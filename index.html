@@ -1,0 +1,3018 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMEBEM Paediatric HALO QRH 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- COLOUR PALETTE (Paediatric Edition) --- */
+        :root {
+            --paeds-primary: #1565c0;
+            --paeds-accent: #00695c;
+            --red-bg: #b71c1c;
+            --blue-bg: #1565c0;
+            --pink-bg: #880e4f;
+            --orange-bg: #e65100;
+            --green-bg: #2e7d32;
+            --purple-bg: #4a148c;
+            --yellow-bg: #f9a825;
+            --black-bg: #212121;
+            --grey-header: #37474f;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background-color: #4a6080;
+            counter-reset: page-counter;
+        }
+
+        /* --- PRINT BUTTON --- */
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            color: #333;
+            border: 2px solid #333;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 9999;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            font-family: 'Inter', sans-serif;
+        }
+        .print-btn:hover { background-color: #eee; }
+
+        /* --- A4 PAGE CONTAINER --- */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            page-break-after: always;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            counter-increment: page-counter;
+        }
+        .page::after {
+            content: counter(page-counter);
+            position: absolute;
+            bottom: 4mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: #999;
+            z-index: 10;
+            background: white;
+            padding: 0 6px;
+        }
+        .page.title-page::after { content: none; }
+        .page.debrief-page::after { content: none; }
+
+        /* --- TITLE PAGE --- */
+        .title-page {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+            padding: 20mm;
+            border: 12px solid var(--paeds-primary);
+        }
+        .tp-logo { width: 160px; margin-bottom: 10mm; }
+        .tp-main-title { font-size: 60pt; font-weight: 900; color: var(--paeds-primary); line-height: 0.9; margin-bottom: 5mm; letter-spacing: -2px; }
+        .tp-subtitle { font-size: 16pt; font-weight: 300; color: var(--paeds-accent); letter-spacing: 3px; margin-bottom: 6mm; text-transform: uppercase; }
+        .tp-paeds-banner {
+            background: var(--green-bg);
+            color: white;
+            font-size: 13pt;
+            font-weight: 900;
+            padding: 8px 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 6px;
+            margin-bottom: 6mm;
+        }
+        .tp-edition { font-size: 14pt; font-weight: 700; border: 3px solid #333; padding: 8px 30px; display: inline-block; margin-bottom: 5mm; color: #333; }
+        .tp-version { font-size: 10pt; font-weight: 600; color: #666; margin-bottom: 10mm; font-family: monospace; }
+
+        /* Paeds Disclaimer Box */
+        .paeds-disclaimer {
+            background: #1565c0;
+            color: #ffffff;
+            border: 4px solid #000000;
+            padding: 10px 15px;
+            text-align: center;
+            font-weight: 900;
+            font-size: 1em;
+            text-transform: uppercase;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+            margin-bottom: 8mm;
+        }
+
+        /* --- GUIDE PAGE (PG 2) --- */
+        .guide-page { flex-direction: column; padding: 15mm; }
+        .gp-header { font-size: 22pt; font-weight: 800; border-bottom: 4px solid #333; margin-bottom: 5mm; text-transform: uppercase; }
+        .gp-section { margin-bottom: 4mm; }
+        .gp-title { font-size: 12pt; font-weight: 700; color: var(--paeds-primary); margin-bottom: 2mm; display: flex; align-items: center; gap: 10px; }
+        .gp-text { font-size: 9.5pt; line-height: 1.4; color: #444; }
+        .gp-box { background: #fff3e0; padding: 10px; border-radius: 6px; border-left: 8px solid var(--red-bg); margin-top: auto; font-size: 9.5pt; color: #d84315; font-weight: bold; }
+
+        /* Glossary Grid */
+        .abbrev-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 12px;
+            font-size: 8.5pt;
+            color: #444;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .abbrev-item {
+            width: calc(50% - 6px);
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 2px;
+        }
+        .abbrev-item strong { color: var(--paeds-primary); margin-right: 8px; min-width: 55px; }
+
+        /* --- CONTENTS PAGE (PG 3) --- */
+        .contents-page { flex-direction: column; padding: 12mm; }
+        .toc-grid { display: flex; flex-direction: row; gap: 8mm; width: 100%; align-items: flex-start; }
+        .toc-column { flex: 1; display: flex; flex-direction: column; width: calc(50% - 4mm); }
+        .toc-group { margin-bottom: 6mm; page-break-inside: avoid; }
+        .toc-header { font-size: 10.5pt; font-weight: 800; color: white; padding: 4px 10px; margin-bottom: 3px; border-radius: 4px; text-transform: uppercase; }
+        .toc-list { list-style: none; padding: 0; margin: 0; }
+        .toc-item { font-size: 9.5pt; padding: 3px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; color: #333; }
+        .toc-item span:last-child { font-weight: 600; color: #666; }
+        .toc-icon { margin-right: 5px; font-size: 0.9em; }
+
+        /* --- COMMON LAYOUT (PAGES 4+) --- */
+        .side-strip { width: 14mm; height: 100%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 2; }
+        .side-strip span { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 900; letter-spacing: 3px; font-size: 9.5pt; white-space: nowrap; color: white; text-transform: uppercase; }
+
+        .page > .side-strip:first-child { border-right: 1px solid #ccc; border-left: none; }
+        .page > .side-strip:last-child { border-left: 1px solid #ccc; border-right: none; }
+
+        .content-area { flex: 1; padding: 7mm 9mm; display: flex; flex-direction: column; background-color: #fdfdfd; height: 100%; }
+
+        /* Headers */
+        .main-header { position: relative; color: white; text-align: center; padding: 5px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 56px; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 3.5mm; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .logo-img { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); height: 32px; width: auto; background: white; padding: 2px; border-radius: 4px; }
+        .main-header h1 { margin: 0; font-size: 14pt; text-transform: uppercase; line-height: 1; font-weight: 900; }
+        .main-header h2 { margin: 2px 0 0 0; font-size: 8pt; font-weight: 700; background-color: rgba(0,0,0,0.25); padding: 2px 10px; border-radius: 3px; }
+
+        /* --- WALKTHROUGH STYLES --- */
+        .wt-layout { display: flex; flex-direction: column; height: 100%; width: 100%; }
+        .wt-grid { display: flex; flex-direction: row; gap: 5mm; flex-grow: 1; margin-bottom: 0; width: 100%; }
+        .wt-col { display: flex; flex-direction: column; gap: 3.5mm; flex: 1; width: calc(50% - 2.5mm); }
+        .wt-box { border: 1px solid #ccc; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05); page-break-inside: avoid; }
+        .wt-box-header { background: #eee; color: #333; padding: 5px 10px; font-weight: 800; font-size: 9pt; border-bottom: 1px solid #ccc; text-transform: uppercase; letter-spacing: 0.5px; }
+        .wt-box-content { padding: 8px; font-size: 8pt; line-height: 1.35; flex-grow: 1; color: #222; }
+
+        /* Checklists */
+        .checklist-item { display: flex; align-items: flex-start; margin-bottom: 4px; font-weight: 500; border-bottom: 1px dashed #eee; padding-bottom: 3px; page-break-inside: avoid; }
+        .checklist-item:last-child { border-bottom: none; }
+        .checkbox { width: 13px; height: 13px; border: 2px solid #555; margin-right: 7px; flex-shrink: 0; border-radius: 3px; background: white; display: inline-block; }
+        .checkbox.checked { background-color: var(--paeds-primary); border-color: var(--paeds-primary); position: relative; }
+        .checkbox.checked::after { content: '✔'; color: white; position: absolute; top: -3px; left: 2px; font-size: 9pt; }
+
+        /* Numbered Lists */
+        .step-list { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+        .step-list li { position: relative; padding-left: 20px; margin-bottom: 6px; font-size: 8.5pt; }
+        .step-list li::before { counter-increment: step; content: counter(step) ". "; font-weight: 900; color: var(--paeds-primary); position: absolute; left: 0; top: 0; min-width: 16px; text-align: right; }
+
+        /* --- DIAGRAMS --- */
+        .diagram-container { margin: 5px 0; text-align: center; background: #fafafa; border: 1px solid #eee; padding: 5px; border-radius: 4px; page-break-inside: avoid; }
+        .diagram-img { max-width: 100%; max-height: 120px; height: auto; object-fit: contain; border-radius: 3px; display: block; margin: 0 auto; border: 1px solid #ddd; }
+        .diagram-caption { font-size: 7.5pt; color: #666; margin-top: 3px; font-weight: 600; font-style: italic; }
+
+        /* --- FLOWCHART STYLES --- */
+        .section {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-left: 6px solid var(--grey-header);
+            border-radius: 4px;
+            margin-bottom: 2.5mm;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            page-break-inside: avoid;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 10px;
+            background-color: var(--grey-header);
+            color: white;
+        }
+
+        .step-critical .section-header { background-color: var(--red-bg); }
+        .step-critical { border-left-color: var(--red-bg); }
+
+        .step-warning { border: 2px solid var(--red-bg); background-color: #ffebee; }
+        .step-warning .section-content { color: #b71c1c; font-weight: bold; }
+
+        .icon-box {
+            width: 20px; height: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9.5pt; font-weight: bold; flex-shrink: 0;
+        }
+
+        .section-title { font-size: 9.5pt; font-weight: 800; text-transform: uppercase; line-height: 1; letter-spacing: 0.5px; }
+
+        .section-content {
+            padding: 5px 10px 5px 30px;
+            font-size: 8.5pt;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #222;
+        }
+
+        .section-content ul { margin: 2px 0; padding: 0; list-style: none; }
+        .section-content li { margin-bottom: 2px; position: relative; padding-left: 12px; }
+        .section-content li::before { content: "•"; position: absolute; left: 0; top: 0; color: #555; font-weight: bold; font-size: 1.1em; line-height: 0.85; }
+
+        .pro-tip {
+            margin-top: 3px;
+            font-size: 8pt;
+            background: #e3f2fd;
+            color: #0d47a1;
+            padding: 3px 6px;
+            border-radius: 3px;
+            border-left: 3px solid var(--paeds-primary);
+            display: block;
+        }
+
+        .paeds-tip {
+            margin-top: 3px;
+            font-size: 8pt;
+            background: #e8f5e9;
+            color: #1b5e20;
+            padding: 3px 6px;
+            border-radius: 3px;
+            border-left: 3px solid #2e7d32;
+            display: block;
+        }
+
+        /* Plan B Box */
+        .plan-b-box {
+            background: #ffebee;
+            border-left: 4px solid #d32f2f;
+            padding: 5px 8px;
+            margin-top: 3px;
+            font-size: 8.5pt;
+            color: #b71c1c;
+            page-break-inside: avoid;
+        }
+        .plan-b-title { font-weight: 800; text-transform: uppercase; font-size: 0.85em; margin-bottom: 2px; }
+
+        /* Badges */
+        .halo-badge {
+            background: white;
+            color: black;
+            font-size: 0.55em;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .da-badge {
+            background: var(--red-bg);
+            color: white;
+            font-size: 0.55em;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .paeds-badge {
+            background: #00695c;
+            color: white;
+            font-size: 0.55em;
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+        }
+
+        .drug-badge {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #c62828;
+            font-size: 0.7em;
+            padding: 1px 5px;
+            border-radius: 4px;
+            margin-left: 5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1.2;
+        }
+
+        /* Drug Doses */
+        .dose {
+            background-color: #ffebee;
+            border: 1px solid #d32f2f;
+            color: #b71c1c;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 900;
+            font-family: monospace;
+            font-size: 1.05em;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        /* Paeds-specific dose highlight */
+        .dose-paeds {
+            background-color: #e8f5e9;
+            border: 1px solid #2e7d32;
+            color: #1b5e20;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 900;
+            font-family: monospace;
+            font-size: 1.05em;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        /* Stop Criteria Box */
+        .stop-box {
+            background: #212121;
+            color: white;
+            padding: 7px;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-size: 8.5pt;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        /* Storage Location Box */
+        .storage-box {
+            border: 4px solid #b71c1c;
+            background: #fff3e0;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        .storage-header { font-weight: 900; color: #b71c1c; text-transform: uppercase; font-size: 0.9em; margin-bottom: 3px; }
+        .storage-text { font-size: 9pt; font-weight: 800; color: #000; }
+
+        /* Anatomy callout */
+        .anatomy-box {
+            background: #fffde7;
+            border: 2px solid #f9a825;
+            border-left: 6px solid #f9a825;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 8pt;
+            color: #555;
+            page-break-inside: avoid;
+        }
+        .anatomy-box strong { color: #e65100; font-weight: 900; }
+
+        /* Warning box (red critical) */
+        .warning-box {
+            background: #b71c1c;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-bottom: 3mm;
+            font-size: 9pt;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            page-break-inside: avoid;
+        }
+
+        /* Footer & References */
+        .footer-spacer { margin-top: auto; }
+        .footer-email { font-size: 7.5pt; color: #777; text-align: center; margin-top: 3px; font-style: italic; }
+        .ref-bar {
+            text-align: center;
+            padding: 3px;
+            font-size: 7pt;
+            color: #555;
+            border-top: 1px solid #eee;
+            margin-top: 2px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            page-break-inside: avoid;
+        }
+        .ref-qr { width: 50px; height: 50px; margin-top: 2px; border: 1px solid #ddd; padding: 2px; background: white; }
+        .ref-link-text { text-decoration: none; color: var(--paeds-primary); }
+
+        /* Hot Debrief Page */
+        .debrief-page {
+            background: linear-gradient(135deg, #e3f2fd 0%, #e8f5e9 100%);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20mm;
+        }
+        .debrief-card {
+            background: white;
+            padding: 10mm;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-top: 10px solid var(--paeds-primary);
+            width: 100%;
+            max-width: 160mm;
+            page-break-inside: avoid;
+        }
+
+        /* Theme Borders for flowchart pages */
+        .theme-pink .section { border-left-color: var(--pink-bg); }
+        .theme-red .section { border-left-color: var(--red-bg); }
+        .theme-blue .section { border-left-color: var(--paeds-primary); }
+        .theme-green .section { border-left-color: var(--green-bg); }
+        .theme-orange .section { border-left-color: var(--orange-bg); }
+        .theme-purple .section { border-left-color: var(--purple-bg); }
+        .theme-yellow .section { border-left-color: var(--yellow-bg); }
+        .theme-black .section { border-left-color: var(--black-bg); }
+
+        /* Print Media Query */
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: none; margin: 0; padding: 0; }
+            .print-btn { display: none; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; width: 210mm; height: 297mm; border: none; }
+            .page:last-child { page-break-after: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+<!-- ===== PAGE 1: TITLE PAGE ===== -->
+<div class="page title-page">
+    <img src="images/wmebem_logo.png" class="tp-logo" alt="WMEBEM Logo">
+    <div class="tp-main-title">HALO</div>
+    <div class="tp-subtitle">High Acuity Low Occurrence<br>Emergency Procedures</div>
+    <div class="tp-paeds-banner">🩺 PAEDIATRIC EDITION — PATIENTS UNDER 16 YEARS</div>
+    <div class="paeds-disclaimer">
+        FOR PATIENTS UNDER 16 YEARS OF AGE<br>
+        <span style="font-size: 0.8em; font-weight: 600;">DO NOT USE THE ADULT EDITION FOR PAEDIATRIC EMERGENCIES</span>
+    </div>
+    <div style="margin: 8mm 0 4mm 0;">
+        <div class="tp-edition">2026 PAEDIATRIC EDITION</div>
+    </div>
+    <div class="tp-version">Version 1.0 (May 2026)</div>
+    <div style="margin-top:auto; font-size: 9pt; color: #555; text-align: center; line-height: 1.5;">
+        Verified against RCOG GTG-56 (Dec 2024), Resuscitation Council UK (2025 Guidelines),<br>RCPCH, DAS 2025
+    </div>
+</div>
+
+<!-- ===== PAGE 2: HOW TO USE ===== -->
+<div class="page guide-page">
+    <div class="paeds-disclaimer" style="font-size: 0.9em; padding: 7px; margin-bottom: 5mm;">
+        ⚠️ PAEDIATRIC PATIENTS ONLY — AGED UNDER 16 — CLINICAL PROCEDURES QRH
+    </div>
+
+    <div class="gp-header">How to Use This Guide</div>
+
+    <div class="gp-section">
+        <div class="gp-title"><span>1.</span> The Two-Page System</div>
+        <div class="gp-text">
+            <strong>Page A: Walkthrough (Preparation)</strong> — Use during the initial "Kit Dump" phase. Contains equipment checklists, team roles, and setup instructions.<br>
+            <strong>Page B: Flowchart (Action)</strong> — Use during the procedure. Designed for high-stress cognitive processing with critical steps highlighted in red.
+        </div>
+    </div>
+
+    <div class="gp-section">
+        <div class="gp-title"><span>2.</span> Design Principles</div>
+        <div class="gp-text">
+            <strong>Standard Steps (Grey):</strong>&nbsp;&nbsp;Routine actions and setups.<br>
+            <strong>Critical Steps (Red):</strong>&nbsp;&nbsp;Dangerous/irreversible actions — pause and confirm.<br>
+            <strong>Paeds Tip (Green):</strong>&nbsp;&nbsp;Paediatric-specific modifications.<br>
+            <strong>Pro-Tip (Blue):</strong>&nbsp;&nbsp;Technique pearls and cognitive aids.<br>
+            <strong>Plan B (Red Box):</strong>&nbsp;&nbsp;Fallback if primary method fails.
+        </div>
+    </div>
+
+    <div class="gp-section">
+        <div class="gp-title"><span>3.</span> Human Factors &amp; Safety</div>
+        <div class="gp-text">
+            <strong>Allocate a Reader:</strong>&nbsp;&nbsp;Hand this booklet to a specific team member to read steps aloud, reducing cognitive load for the operator.<br>
+            <strong>Pre-Procedure Pause:</strong>&nbsp;&nbsp;5-second pause before any incision. Confirm landmarks verbally.<br>
+            <strong>Weight Estimation:</strong>&nbsp;&nbsp;Use Broselow tape if available. Formula: &lt;1yr=(0.5×months)+4, 1-5yr=(2×age)+8, &gt;5yr=(3×age)+7.
+        </div>
+    </div>
+
+    <div class="gp-section">
+        <div class="gp-title"><span>4.</span> Glossary of Abbreviations</div>
+        <div class="abbrev-grid">
+            <div class="abbrev-item"><strong>DAS</strong> Difficult Airway Society</div>
+            <div class="abbrev-item"><strong>RCOG</strong> Royal College of Obstetricians &amp; Gynaecologists</div>
+            <div class="abbrev-item"><strong>RCUK</strong> Resuscitation Council UK</div>
+            <div class="abbrev-item"><strong>RCPCH</strong> Royal College of Paediatrics &amp; Child Health</div>
+            <div class="abbrev-item"><strong>NLS</strong> Neonatal Life Support</div>
+            <div class="abbrev-item"><strong>PALS</strong> Paediatric Advanced Life Support</div>
+            <div class="abbrev-item"><strong>ROSC</strong> Return of Spontaneous Circulation</div>
+            <div class="abbrev-item"><strong>LUD</strong> Left Uterine Displacement</div>
+            <div class="abbrev-item"><strong>ETT</strong> Endotracheal Tube</div>
+            <div class="abbrev-item"><strong>TXA</strong> Tranexamic Acid</div>
+            <div class="abbrev-item"><strong>GTG</strong> RCOG Green-top Guideline</div>
+            <div class="abbrev-item"><strong>NICU</strong> Neonatal Intensive Care Unit</div>
+            <div class="abbrev-item"><strong>PMCS</strong> Perimortem Caesarean Section</div>
+            <div class="abbrev-item"><strong>RH</strong> Resuscitative Hysterotomy</div>
+            <div class="abbrev-item"><strong>ACC</strong> Aortocaval Compression</div>
+            <div class="abbrev-item"><strong>IO</strong> Intraosseous</div>
+            <div class="abbrev-item"><strong>TBSA</strong> Total Body Surface Area</div>
+            <div class="abbrev-item"><strong>CICO</strong> Can't Intubate Can't Oxygenate</div>
+            <div class="abbrev-item"><strong>CTM</strong> Cricothyroid Membrane</div>
+            <div class="abbrev-item"><strong>eFONA</strong> Emergency Front of Neck Airway</div>
+            <div class="abbrev-item"><strong>LAST</strong> Local Anaesthetic Systemic Toxicity</div>
+        </div>
+    </div>
+
+    <div class="gp-box">
+        <strong>⚠️ CLINICAL DISCLAIMER</strong><br>
+        These guides are cognitive aids for trained medical professionals and do not replace clinical judgement. Guidelines are subject to change. For up-to-date guidance, consult RCOG GTG-56 (Dec 2024), RCUK 2025, DAS 2025, and RCPCH guidelines. Weight-based drug dosing is mandatory in all paediatric patients.
+    </div>
+</div>
+
+<!-- ===== PAGE 3: CONTENTS ===== -->
+<div class="page contents-page">
+    <div class="gp-header" style="font-size: 20pt; margin-bottom: 3mm;">Contents — Paediatric HALO QRH</div>
+    <div style="font-size: 8.5pt; margin-bottom: 5mm; color: #555;">🧰 = HALO Trolley item &nbsp;|&nbsp; 🩺 = Paediatric-specific modification</div>
+
+    <div class="toc-grid">
+        <div class="toc-column">
+            <div class="toc-group">
+                <div class="toc-header" style="background: var(--pink-bg);">Obstetric Emergency</div>
+                <ul class="toc-list">
+                    <li class="toc-item"><span><span class="toc-icon">🧰</span>Resuscitative Hysterotomy</span> <span>Pg 4–5</span></li>
+                    <li class="toc-item"><span>Emergency Breech Delivery</span> <span>Pg 6–7</span></li>
+                </ul>
+            </div>
+            <div class="toc-group">
+                <div class="toc-header" style="background: var(--red-bg);">Trauma / Critical</div>
+                <ul class="toc-list">
+                    <li class="toc-item"><span><span class="toc-icon">🧰</span>Resuscitative Thoracotomy</span> <span>Pg 8–9</span></li>
+                    <li class="toc-item"><span>Escharotomy (Burns)</span> <span>Pg 10–11</span></li>
+                </ul>
+            </div>
+            <div class="toc-group">
+                <div class="toc-header" style="background: var(--paeds-primary);">Thoracic</div>
+                <ul class="toc-list">
+                    <li class="toc-item"><span><span class="toc-icon">🧰</span>Chest Drain (Open)</span> <span>Pg 12–13</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="toc-column">
+            <div class="toc-group">
+                <div class="toc-header" style="background: var(--purple-bg);">Cardiac / Vascular</div>
+                <ul class="toc-list">
+                    <li class="toc-item"><span><span class="toc-icon">🧰</span>Pericardiocentesis</span> <span>Pg 14–15</span></li>
+                    <li class="toc-item"><span>External Pacing</span> <span>Pg 16–17</span></li>
+                    <li class="toc-item"><span><span class="toc-icon">🧰</span>Subclavian Central Line</span> <span>Pg 18–19</span></li>
+                </ul>
+            </div>
+            <div class="toc-group">
+                <div class="toc-header" style="background: var(--orange-bg);">Specialist</div>
+                <ul class="toc-list">
+                    <li class="toc-item"><span>Lateral Canthotomy</span> <span>Pg 20–21</span></li>
+                    <li class="toc-item"><span>Severe Max-Fax Bleed</span> <span>Pg 22–23</span></li>
+                </ul>
+            </div>
+            <div class="toc-group">
+                <div class="toc-header" style="background: #b8860b;">Toxicology</div>
+                <ul class="toc-list">
+                    <li class="toc-item"><span>LAST (Lipid Rescue)</span> <span>Pg 24–25</span></li>
+                </ul>
+            </div>
+            <div class="toc-group">
+                <div class="toc-header" style="background: var(--paeds-primary);">Airway Rescue</div>
+                <ul class="toc-list">
+                    <li class="toc-item"><span>Surgical Airway (eFONA/Tracheotomy)</span> <span>Pg 26–27</span></li>
+                    <li class="toc-item"><span>DC Cardioversion</span> <span>Pg 28–29</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #e3f2fd; border: 2px solid var(--paeds-primary); border-radius: 6px; padding: 8px 12px; margin-top: 5mm; font-size: 8pt; color: #1565c0;">
+        <strong>KEY PAEDIATRIC DIFFERENCES:</strong>
+        ETT size = (Age÷4)+3.5 (cuffed) or (Age÷4)+4 (uncuffed) | Weight estimate: &lt;1yr=(0.5×months)+4, 1-5yr=(2×age)+8, &gt;5yr=(3×age)+7 | Chest drain size = 4×ETT size (French) | IO access preferred over subclavian in arrest | Needle FONA fails — use scalpel technique | Paeds pacing pads if &lt;15kg
+    </div>
+</div>
+
+<!-- ===== PAGE 4: RESUSCITATIVE HYSTEROTOMY WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--pink-bg);"><span>OBSTETRIC EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--pink-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Resuscitative Hysterotomy</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        • Call <strong>2222</strong> — "Paediatric Obstetric / Cardiac Arrest"<br>
+                        • Activate: EM Reg (lead), Paediatric Reg, Obstetric Reg, Anaesthetics, Neonatal Team (NLS)<br>
+                        • <strong>Indication:</strong> Cardiac arrest AND uterus ≥ umbilicus (≈≥20/40)<br>
+                        • If no ROSC within <strong>4 minutes</strong> of effective CPR → proceed with RH<br>
+                        • Goal: deliver within <strong>5 minutes</strong> of arrest<br><br>
+                        <strong>ALS Modifications (begin immediately):</strong><br>
+                        • Manual LUD — push uterus LEFT with both hands<br>
+                        • IV access ×2 above diaphragm (or IO if difficult)<br>
+                        • Early intubation: ETT = <span class="dose-paeds">(Age÷4)+3.5</span> (cuffed), assume difficult airway<br>
+                        • Remove fetal monitors
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment Checklist</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine (rapid splash)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Sterile Drape / Gown Pack</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Scalpel: Size 10 or 20</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Tuff Cut Scissors</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Suction ×2</strong> (Yankauer + wide bore)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Large Swabs (for packing)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Stapler / Clingfilm / Large Dressings</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Umbilical Cord Clamps ×2</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Artery Forceps ×2</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> Scissors or Scalpel (for cord)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Age-appropriate ETT + BVM</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Broselow Tape</strong></div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage Location</div>
+                    <div class="storage-text">HALO TROLLEY + NEONATAL RESUS KIT IN PAEDIATRIC RESUS BAY</div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--pink-bg);">
+                    <div class="wt-box-header">Procedure Walkthrough</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>Prepare:</strong> Rapid chlorhexidine splash. Continue CPR throughout.</li>
+                            <li><strong>Skin Incision:</strong> Vertical midline — Xiphisternum to Pubic Symphysis. Deep through skin and fat with SCALPEL.</li>
+                            <li><strong>Peritoneum:</strong> Bluntly enter with fingers (tear open) — avoids bowel injury.</li>
+                            <li><strong>Expose Uterus:</strong> Retract abdominal wall laterally.</li>
+                            <li><strong>Uterine Incision:</strong> Vertical in upper segment of uterus. SCALPEL to start, extend with TUFF CUT SCISSORS.</li>
+                            <li><strong>Protect Baby:</strong> Insert two fingers under uterine wall, away from fetal head. Extend cut superiorly.</li>
+                            <li><strong>Delivery:</strong> Scoop head and shoulders. Do NOT pull by a single limb.</li>
+                            <li><strong>Cord:</strong> Clamp ×2. Cut between clamps. Hand to NLS Team immediately.</li>
+                            <li><strong>Placenta:</strong> One gentle tug. If stuck — leave in situ. Pack uterus with SWABS.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 Adolescent uterus may be smaller — start with smaller stab incision</span>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 4px solid var(--pink-bg);">
+                    <div class="wt-box-header">Post-Procedure Plan</div>
+                    <div class="wt-box-content">
+                        <strong>ROSC:</strong> Mass closure (dressings/clingfilm/staples). Emergent Theatre. Continue ALS during transfer.<br>
+                        <strong>Drugs:</strong> Oxytocin <span class="dose">5 units</span> IV slowly (NEVER rapid bolus — risk of re-arrest), Antibiotics, TXA <span class="dose-paeds">15mg/kg IV (max 1g)</span><br>
+                        <strong>Neonate:</strong> Dedicated NLS team only. NICU activation ≥22/40.
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/hysterotomy.jpg" class="diagram-img" alt="Hysterotomy Incision">
+                    <div class="diagram-caption">Vertical midline incision — speed over sterility</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 5: RESUSCITATIVE HYSTEROTOMY FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-pink">
+        <div class="main-header" style="background-color: var(--pink-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Resuscitative Hysterotomy</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li><strong>GOAL: DELIVERY &lt;5 MINS</strong> | Indication: Cardiac arrest. Uterus ≥ umbilicus. No ROSC after 4 mins CPR</li>
+                    <li>Call 2222 "Paediatric Obstetric Arrest"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">0</div><div class="section-title">IMMEDIATE ALS MODIFICATIONS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>CPR:</strong> Standard ACLS + Manual LUD (push LEFT — do NOT tilt)</li>
+                    <li><strong>Airway:</strong> ETT = <span class="dose-paeds">(Age÷4)+3.5</span> cuffed. Assume difficult airway.</li>
+                    <li><strong>IV Access:</strong> ×2 above diaphragm. Use IO if peripheral difficult.</li>
+                </ul>
+                <span class="pro-tip">Remove fetal monitors — impede resuscitation quality</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">ABDOMINAL INCISION</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Pause 5 seconds. Confirm landmarks verbally.</li>
+                    <li><strong>Vertical Midline:</strong> Xiphisternum to Pubic Symphysis.</li>
+                    <li>Deep through skin and fat. Bluntly separate rectus muscles.</li>
+                    <li>Enter peritoneum bluntly with fingers — do not use blade.</li>
+                </ul>
+                <span class="pro-tip">Ignore bleeding — no cardiac output during arrest.</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">UTERINE INCISION</div></div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Vertical incision</strong> upper uterine segment (avoids bladder/arteries).</li>
+                    <li>Insert two fingers to protect fetal face.</li>
+                    <li>Extend with TUFF CUT SCISSORS toward fundus.</li>
+                </ul>
+                <span class="paeds-tip">🩺 Adolescent uterus may be smaller — use smaller initial stab.</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">DELIVERY</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Scoop head and shoulders. Do NOT pull on single limb.</li>
+                    <li>Rotate to disengage from pelvis if needed.</li>
+                    <li>Clamp cord ×2. Cut between clamps. Hand to NLS team.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">POST-DELIVERY &amp; CLOSURE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Placenta:</strong> One gentle tug. If stuck — leave in situ. Pack with SWABS.</li>
+                    <li><strong>Drugs:</strong> Oxytocin <span class="dose">5 units IV slowly</span>, Antibiotics, TXA <span class="dose-paeds">15mg/kg (max 1g)</span> <span class="drug-badge">Fetch Drugs</span></li>
+                    <li><strong>Closure:</strong> Pack uterus. Dressings/clingfilm/staples.</li>
+                    <li><strong>Transfer:</strong> Emergent Theatre if ROSC.</li>
+                </ul>
+                <div class="plan-b-box">
+                    <div class="plan-b-title">⚠️ Paediatric Note: Oxytocin</div>
+                    Give 5 units IV over ≥1 minute. Never rapid bolus in adolescents — profound hypotension risk. Consider carboprost/ergometrine (obstetric advice).
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.rcog.org.uk%2Fguidance%2Fbrowse-all-guidance%2Fgreen-top-guidelines%2Fmaternal-collapse-in-pregnancy-and-the-puerperium-green-top-guideline-no-56%2F" class="ref-qr" alt="QR Code">
+            References: RCOG GTG-56 (Dec 2024) | RCUK 2025 Special Circumstances
+            <a href="https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/maternal-collapse-in-pregnancy-and-the-puerperium-green-top-guideline-no-56/" target="_blank" class="ref-link-text">Open RCOG GTG-56</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--pink-bg);"><span>OBSTETRIC EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 6: EMERGENCY BREECH WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--pink-bg);"><span>OBSTETRIC EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--pink-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Emergency Breech Delivery</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="paeds-badge">🩺 PAEDIATRIC EDITION</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions</div>
+                    <div class="wt-box-content">
+                        • Call <strong>2222</strong> "Obstetric Emergency" + "Neonatal Emergency"<br>
+                        • <strong>Position:</strong> Lithotomy. Buttocks to edge of bed.<br>
+                        • <strong>Team:</strong> EM Reg (lead), Paediatric Reg, Obstetric Reg, Anaesthetics, Neonatal Team<br><br>
+                        <strong>GOLDEN RULE — HANDS OFF:</strong><br>
+                        • Do NOT touch baby until umbilicus is visible<br>
+                        • Allow baby to hang — gravity delivers<br>
+                        • Deliver head within <strong>5 minutes</strong> of buttock delivery<br><br>
+                        <strong>Paeds Considerations:</strong><br>
+                        • Adolescent pelvis may be narrower — be prepared for head entrapment<br>
+                        • Concealed pregnancy: gestational age may be unknown — prepare NLS for all ≥22/40<br>
+                        • Warm environment critical — switch on Resuscitaire heater immediately
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Sterile Drape</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Neonatal Resuscitation Kit</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Resuscitaire (Heater on)</strong> <span class="drug-badge">Switch On Now</span></div>
+                        <div class="checklist-item"><div class="checkbox"></div> Oxytocin — weight-based <span class="drug-badge">Fetch Drug</span></div>
+                        <div class="checklist-item"><div class="checkbox"></div> GTN Spray (uterine relaxation) <span class="drug-badge">Fetch Drug</span></div>
+                        <div class="checklist-item"><div class="checkbox"></div> Episiotomy Scissors</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Cord Clamps ×2</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Broselow Tape</strong></div>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 3px solid var(--pink-bg);">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • Inspect perineum for tears (3rd/4th degree)<br>
+                        • Active management 3rd stage: Oxytocin weight-based IV<br>
+                        • Paediatric review for baby (hips, limbs, cord)<br>
+                        • Transfer to Obstetric Unit / Theatre for repair
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--pink-bg);">
+                    <div class="wt-box-header">Manoeuvres (if descent stops)</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>Legs Stuck (Pinard's):</strong> Insert finger behind fetal knee (popliteal fossa). Abduct thigh laterally. Knee flexes. Sweep out.</li>
+                            <li><strong>Arms Stuck (Lovset's):</strong> Hold bony pelvis (thumbs on sacrum). Rotate 180° (keep back up). Posterior arm sweeps down. Deliver arm. Rotate back 180° for second arm.</li>
+                            <li><strong>Head Stuck (Mauriceau-Smellie-Veit):</strong> Assistant: Suprapubic pressure. Operator: Baby on forearm. Fingers on malar eminences. Flex head. Pull gently.</li>
+                            <li><strong>Head Trapped — Adolescent Pelvis:</strong> GTN Spray <span class="dose">400mcg</span> sublingual (1-2 puffs) — uterine relaxation in ~60 sec. Call Obstetric Reg if not present. Consider Dührssen's cervical incisions (specialist only).</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="anatomy-box" style="margin-top: 3mm;">
+                    <strong>🩺 Adolescent Pelvis:</strong> May be android/anthropoid shaped with narrower subpubic angle. Head entrapment is more likely. Have GTN available. Episiotomy alone will NOT resolve head entrapment.
+                </div>
+
+                <div class="diagram-container" style="margin-top: 3mm;">
+                    <img src="images/breech.png" class="diagram-img" alt="Pinard's manoeuvre">
+                    <div class="diagram-caption">Pinard's: Abduct thigh to flex knee</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 7: EMERGENCY BREECH FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-pink">
+        <div class="main-header" style="background-color: var(--pink-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Emergency Breech Delivery</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="paeds-badge">🩺 PAEDIATRIC EDITION</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li><strong>GOLDEN RULE: HANDS OFF</strong> | Allow breech to hang | Keep room warm | Deliver head within 5 mins of buttocks</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">LEGS STUCK (Pinard's)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Frank breech. Finger in popliteal fossa. Abduct thigh. Knee flexes. Sweep out.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">ARMS STUCK (Lovset's)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Winged scapula sign. Hold bony pelvis. Rotate 180°. Arm sweeps over chest. Rotate back.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">HEAD STUCK (Mauriceau-Smellie-Veit)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Baby on forearm. Fingers on malar. Flex head. Pull gently.</li>
+                </ul>
+                <span class="pro-tip">Check cord around neck — slip over head or double-clamp and cut if tight.</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">HEAD TRAPPED — ADOLESCENT PELVIS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Call Obstetric Reg immediately.</li>
+                    <li>GTN Spray <span class="dose">400mcg sublingual</span>.</li>
+                    <li>Consider Dührssen's cervical incisions (specialist only).</li>
+                </ul>
+                <span class="paeds-tip">🩺 Do NOT apply fundal pressure — worsens impaction.</span>
+                <div class="plan-b-box">
+                    <div class="plan-b-title">⚠️ Last Resort</div>
+                    Zavanelli manoeuvre (cephalic replacement) + Emergency caesarean (Obstetric Reg).
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">POST-PROCEDURE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Inspect tears. Oxytocin <span class="dose-paeds">5-10 units IV slowly</span> (weight-based). <span class="drug-badge">Fetch Drug</span></li>
+                    <li>Paediatric review of neonate.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.rcog.org.uk%2Fguidance%2Fbrowse-all-guidance%2Fgreen-top-guidelines%2Fmanagement-of-breech-presentation-green-top-guideline-no-20b%2F" class="ref-qr" alt="QR Code">
+            Reference: RCOG GTG-20b | Breech Presentation Management
+            <a href="https://www.rcog.org.uk/guidance/browse-all-guidance/green-top-guidelines/management-of-breech-presentation-green-top-guideline-no-20b/" target="_blank" class="ref-link-text">Open RCOG GTG-20b</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--pink-bg);"><span>OBSTETRIC EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 8: RESUSCITATIVE THORACOTOMY WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--red-bg);"><span>TRAUMA ARREST</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--red-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Resuscitative Thoracotomy</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        • Call <strong>2222</strong> "Trauma Cardiac Arrest". Activate Major Haemorrhage Protocol. Request O-neg blood.<br>
+                        • Consider WMAS/HEMS — patient will need transfer to MTC (QE Birmingham).<br><br>
+                        <strong>PAEDIATRIC INDICATIONS (tighter than adult):</strong><br>
+                        • <strong>PENETRATING</strong> thoracic/epigastric: Arrest &lt;15 mins + signs of life (pupil response, gasping, ECG activity, cardiac motion on US)<br>
+                        • <strong>BLUNT trauma:</strong> Witnessed loss of cardiac output in ED only<br>
+                        • Signs of Life (SOL) = pupils reacting, gasping, ECG activity, cardiac motion on USS<br><br>
+                        <strong>PAEDIATRIC CONTRAINDICATIONS:</strong><br>
+                        • Pre-hospital CPR &gt;15 mins after penetrating injury without SOL<br>
+                        • Blunt trauma without witnessed arrest in ED<br>
+                        • Severe head injury + cardiac arrest<br><br>
+                        <span class="paeds-tip">🩺 Adolescents (16-18): ~5% survival with penetrating + SOL. True paediatric (&lt;15): 0% survival in blunt, rare survivors in penetrating. Age alone should not preclude attempt in penetrating + SOL.</span><br><br>
+                        <strong>Goals:</strong> Release tamponade | Internal cardiac massage | Cross-clamp descending aorta
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment Tray</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Sterile Drape / Gown Pack</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Scalpel: Size 22</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Tuff Cut Scissors (Heavy Duty)</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> Gigli Saw (Handles + Wire) or Bone Cutters</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Finochietto Retractor</strong> (pliable ribs in young children)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Toothed Forceps (Bonney's)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Vascular Clamp (Satinsky/DeBakey)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Internal Paddles (for Defib)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Artery Forceps (Spencer Wells/Kellys)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Foley Catheter 12-14F (&lt;30kg), 20F (larger)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Prolene/Silk 2-0 (Horizontal Mattress)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Skin Stapler / Large Dressings</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">FINOCHIETTO RETRACTOR AND GIGLI SAW IN THORACOTOMY TRAY</div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--red-bg);">
+                    <div class="wt-box-header">Procedure Walkthrough</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>Position:</strong> Supine. Left arm extended overhead (exposes left thorax).</li>
+                            <li><strong>Incision:</strong> Left anterolateral thoracotomy — 4th or 5th ICS (below nipple, above 5th rib). Incise from sternum to mid-axillary line.</li>
+                            <li><strong>Enter Chest:</strong> Tuff Cut scissors through intercostal muscles. Finger to guide entry. Avoid lung.</li>
+                            <li><strong>Retract:</strong> Insert Finochietto retractor (or manually retract ribs). In young children, ribs are pliable — may not need saw.</li>
+                            <li><strong>Pericardiotomy:</strong> Grasp pericardium anterior to phrenic nerve. Vertical incision — release tamponade. Remove clot manually.</li>
+                            <li><strong>Internal Cardiac Massage:</strong> Two-handed compression (or one-handed in small children). 100 compressions/min.</li>
+                            <li><strong>Aortic Cross-Clamp:</strong> Identify descending aorta (left of spine). Clamp with Satinsky clamp. Shunts blood to coronary + cerebral.</li>
+                            <li><strong>Defibrillate:</strong> VF/pVT — Internal paddles <span class="dose-paeds">10-20J</span>.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 Paediatric ribs are more pliable — manual spreading may suffice without Gigli saw in children &lt;10 yrs. One-handed cardiac massage for small children.</span>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 3px solid var(--red-bg);">
+                    <div class="wt-box-header">Post-Procedure Plan</div>
+                    <div class="wt-box-content">
+                        If ROSC: Close chest with large dressings. Immediate Transfer to Cardiothoracics / MTC. Sedate and paralyse. Maintain aortic clamp during transfer if clamped.
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/thoracotomy.png" class="diagram-img" alt="Left anterolateral thoracotomy">
+                    <div class="diagram-caption">Left anterolateral thoracotomy — 4th/5th ICS</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 9: RESUSCITATIVE THORACOTOMY FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-red">
+        <div class="main-header" style="background-color: var(--red-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Resuscitative Thoracotomy</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li><strong>PENETRATING + SOL &lt;15 mins = PROCEED</strong> | BLUNT = witnessed ED arrest only | BLUNT without SOL = do NOT proceed</li>
+                </ul>
+            </div>
+        </div>
+        <span class="paeds-tip" style="margin-bottom: 3mm; display:block;">🩺 Adolescent (16-18) = ~5% survival (penetrating+SOL). Paediatric (&lt;15) = rare survivors in penetrating only.</span>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">LEFT ANTEROLATERAL THORACOTOMY</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Incision: 4th/5th ICS, sternum to mid-axillary line, below nipple/above 5th rib.</li>
+                    <li>Divide intercostal muscles with Tuff Cut scissors (blade up, finger guide).</li>
+                    <li>Spread ribs — Finochietto OR manual in young/pliable ribs.</li>
+                </ul>
+                <span class="pro-tip">In children &lt;10 yrs, ribs may spread manually without Gigli saw.</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">PERICARDIOTOMY &amp; TAMPONADE RELEASE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Grasp pericardium anterior to phrenic nerve. Vertical incision.</li>
+                    <li>Open longitudinally. Remove clot manually.</li>
+                    <li>Internal cardiac massage: 2-handed adults/older teens. 1-handed in small children.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">CARDIAC MASSAGE &amp; DEFIB</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Rate: ~100 compressions/min.</li>
+                    <li>VF/pVT: Internal paddles — <span class="dose-paeds">10-20J (paediatric setting)</span>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">AORTIC CROSS-CLAMP</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Identify descending aorta posterior-left of thoracic cavity.</li>
+                    <li>Clamp with Satinsky clamp. Diverts blood to cerebral/coronary circulation.</li>
+                    <li>Do NOT release clamp until haemorrhage controlled.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">WOUNDS &amp; CLOSURE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Cardiac wounds: Suture or Foley balloon tamponade (12-14F for small children).</li>
+                    <li>Lung: Clamp pulmonary hilum if massive haemorrhage.</li>
+                    <li>Closure: Dressings/staples. Immediate transfer.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stop-box">
+            STOP CRITERIA: &gt;30 mins CPR without ROSC | No cardiac activity on direct visualisation | Non-survivable injuries
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.rcem.ac.uk%2FClinical-Guidance%2FTrauma" class="ref-qr" alt="QR Code">
+            RCEM / EAST Systematic Review 2023 | J Trauma Acute Care Surg 2023;95:432-441
+            <a href="https://www.rcem.ac.uk/Clinical-Guidance/Trauma" target="_blank" class="ref-link-text">RCEM Trauma Guidance</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--red-bg);"><span>TRAUMA ARREST</span></div>
+</div>
+
+<!-- ===== PAGE 10: ESCHAROTOMY WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--black-bg);"><span>BURNS EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--black-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Escharotomy (Burns)</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        • Call <strong>2222</strong> "Burns Emergency". Early contact with Regional Burns Centre.<br>
+                        • <strong>Indication:</strong> Full thickness circumferential burns causing:<br>
+                        &nbsp;&nbsp;– Chest: Respiratory failure (reduced chest expansion, rising pressures)<br>
+                        &nbsp;&nbsp;– Limb: Vascular compromise (absent distal pulse, CRT &gt;2s, pain/pallor/paraesthesia)<br><br>
+                        <strong>Fluid Resuscitation (start BEFORE escharotomy):</strong><br>
+                        <span class="dose-paeds">PAEDIATRIC Parkland: 3ml × weight(kg) × %TBSA</span> (full thickness only)<br>
+                        Half in first 8 hours, half over next 16 hours. Use Hartmann's or Plasmalyte.<br>
+                        Urine output target: <span class="dose-paeds">&gt;1ml/kg/hr</span> in children &lt;30kg<br>
+                        Threshold for resus: <strong>&gt;10% TBSA</strong> in children (vs 15% adults)<br>
+                        BBA referral threshold: <strong>≥2% TBSA</strong> in children (vs ≥3% adults)<br><br>
+                        <span class="paeds-tip">🩺 TBSA: Use Lund-Browder chart (NOT Rule of Nines — less accurate in children). Child's palm + fingers ≈ 1% TBSA.</span>
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Sterile Drape / Gown Pack</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Scalpel: Size 22 or 10</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Surgical Diathermy</strong> (preferred — reduces bleeding)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Large Swabs</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Dressings (paraffin gauze / Mepitel)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Silver Sulfadiazine cream</div>
+                    </div>
+                </div>
+                <span class="paeds-tip" style="display:block; margin-top: 3mm;">🩺 Surgical diathermy preferred in children — less blood loss.</span>
+
+                <div class="storage-box" style="margin-top: 3mm;">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">ESCHAROTOMY EQUIPMENT ON BURNS TROLLEY</div>
+                </div>
+
+                <div class="wt-box" style="margin-top: 3mm; border-top: 3px solid var(--black-bg);">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • Monitor CRT, Doppler pulse, SpO2 every 15 mins<br>
+                        • Re-dress with paraffin gauze / Mepitel<br>
+                        • Immediate transfer to Burns Centre if not already there<br>
+                        • Re-evaluate every 2-4 hours — may need repeat escharotomy
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--black-bg);">
+                    <div class="wt-box-header">Anatomical Lines — Limb</div>
+                    <div class="wt-box-content">
+                        <strong>1. Upper Limb:</strong> Medial and lateral incisions along the full length of the limb. Include thenar/hypothenar eminences and dorsal interossei if hand affected.<br>
+                        <strong>2. Lower Limb:</strong> Medial and lateral incisions. Include dorsum of foot if foot affected.<br><br>
+                        <strong style="color: #b71c1c;">Critical: Do NOT extend into muscle/fascia (that is fasciotomy — requires surgical referral)</strong>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 4px solid var(--black-bg);">
+                    <div class="wt-box-header">Anatomical Lines — Chest</div>
+                    <div class="wt-box-content">
+                        <strong>1.</strong> Bilateral anterior axillary line incisions (vertical, clavicle to costal margin).<br>
+                        <strong>2.</strong> Connect across sternum with transverse subcostal incision if needed.<br>
+                        <strong>3.</strong> May also extend along costal margin bilaterally.<br><br>
+                        <strong>Incision depth = through full dermis to subcutaneous fat only.</strong>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 4px solid var(--black-bg);">
+                    <div class="wt-box-header">Procedure Steps</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li>Analgesia + sedation — children have pain from surrounding partial thickness injury</li>
+                            <li>Clean area with chlorhexidine</li>
+                            <li>Mark incision lines with pen</li>
+                            <li>Scalpel incision through eschar to subcutaneous fat (not muscle)</li>
+                            <li>Check for adequate release: limb = palpable pulse returns; chest = improved chest rise</li>
+                            <li>Dress with paraffin gauze or Mepitel — do NOT use dry dressings</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/escharotomy.png" class="diagram-img" alt="Escharotomy lines">
+                    <div class="diagram-caption">Escharotomy lines: medial/lateral limb + anterior axillary chest</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 11: ESCHAROTOMY FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-black">
+        <div class="main-header" style="background-color: var(--black-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Escharotomy (Burns)</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li><strong>INDICATION:</strong> Full thickness circumferential burn + respiratory failure OR limb ischaemia | Contact Burns Centre EARLY</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">FLUID RESUSCITATION (FIRST)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Parkland: <span class="dose-paeds">3ml × kg × %TBSA</span> (Hartmann's/Plasmalyte)</li>
+                    <li>Half in 8hrs, half over 16hrs (from time of burn)</li>
+                    <li>Target urine: <span class="dose-paeds">&gt;1ml/kg/hr</span> (&lt;30kg children)</li>
+                </ul>
+                <span class="paeds-tip">🩺 Threshold ≥10% TBSA for resus in children (adults: 15%)</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">CHEST ESCHAROTOMY</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Both anterior axillary line incisions — clavicle to costal margin</li>
+                    <li>Transverse subcostal connection if needed</li>
+                    <li>Depth: Dermis to fat only — NOT muscle</li>
+                    <li>Check: Improved chest rise and ventilator pressures</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">LIMB ESCHAROTOMY — MEDIAL/LATERAL</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Medial AND lateral incisions — full length of affected limb</li>
+                    <li>Include hand/foot if involved</li>
+                    <li>Depth: Dermis to fat — NOT into fascia</li>
+                    <li>Check: Return of palpable pulse + Doppler signal</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">CONFIRM RELEASE &amp; DRESS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Limb: Palpable pulse, CRT &lt;2s, Doppler signal</li>
+                    <li>Chest: Improved chest expansion, SpO2, reduced ventilator pressures</li>
+                    <li>Dress with paraffin gauze / Mepitel</li>
+                </ul>
+                <div class="plan-b-box">
+                    <div class="plan-b-title">⚠️ If release inadequate</div>
+                    Fasciotomy required (surgical specialty). Do NOT attempt blind fasciotomy in ED.
+                </div>
+            </div>
+        </div>
+
+        <div class="stop-box">
+            Burns Centre contact mandatory. BBA referral: ≥2% TBSA in children. Do NOT delay transfer.
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.britishburnassociation.org%2F" class="ref-qr" alt="QR Code">
+            British Burn Association | RCEM Learning Burns
+            <a href="https://www.britishburnassociation.org/" target="_blank" class="ref-link-text">British Burn Association</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--black-bg);"><span>BURNS EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 12: CHEST DRAIN WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--paeds-primary);"><span>THORACIC EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--paeds-primary);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Chest Drain (Open)</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        <strong>INDICATIONS:</strong> Tension pneumothorax (needle decompression first), Haemothorax, Massive haemothorax, Traumatic pneumothorax<br><br>
+                        • Needle decompression FIRST if tension: 2nd ICS mid-clavicular line OR 4th/5th ICS anterior axillary line<br>
+                        • <strong>Triangle of Safety:</strong> anterior border of latissimus dorsi, lateral border of pectoralis major, superior to nipple, below axilla<br>
+                        • Insert ABOVE the rib (avoid neurovascular bundle on inferior rib border)<br>
+                        • Ultrasound guidance strongly recommended where time allows<br><br>
+                        <strong>PAEDIATRIC SIZE GUIDE:</strong><br>
+                        <span class="dose-paeds">Chest drain (French) = 4 × uncuffed ETT size</span><br>
+                        &lt;1 yr: 10-14 Fr | 1-5 yrs: 14-20 Fr<br>
+                        6-12 yrs: 20-24 Fr | &gt;12 yrs: 24-28 Fr<br><br>
+                        <strong style="color: #b71c1c;">NEVER use trochar technique in children</strong>
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Sterile Drape / Gown Pack</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Scalpel: Size 10 or 15</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Blunt dissection forceps (artery clip)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Chest drain — appropriately sized</strong> (see size guide)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Underwater seal drainage system</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Large bore suction</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Suture (1-0 Prolene / Silk)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Occlusive dressing</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Lignocaine 1% (max <span class="dose-paeds">3mg/kg</span>)</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">CHEST DRAIN EQUIPMENT ON TRAUMA TROLLEY</div>
+                </div>
+
+                <div class="wt-box" style="margin-top: 3mm;">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • CXR to confirm position<br>
+                        • Monitor: If &gt;10ml/kg in first hour → clamp and call thoracics<br>
+                        • Secure drain — never to clothing<br>
+                        • Suction: -5 to -10 cmH2O
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--paeds-primary);">
+                    <div class="wt-box-header">Procedure Walkthrough</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>Position:</strong> Arm on affected side abducted and elevated above head.</li>
+                            <li><strong>Identify:</strong> 4th or 5th ICS, anterior axillary line (Triangle of Safety). Mark with pen.</li>
+                            <li><strong>Clean:</strong> Chlorhexidine. Drape. Infiltrate lignocaine — skin, rib, pleura (max <span class="dose-paeds">3mg/kg</span> in children).</li>
+                            <li><strong>Skin Incision:</strong> Horizontal incision parallel to rib, 1.5-2cm. Into subcutaneous fat.</li>
+                            <li><strong>Blunt Dissection:</strong> Artery clip — dissect over superior border of rib into pleural space. Feel 'give' on entry.</li>
+                            <li><strong>Finger Sweep:</strong> In older children (&gt;8 yrs) — single finger sweep to confirm pleural space. In small children — NOT possible; use forceps to guide drain.</li>
+                            <li><strong>Insert Drain:</strong> Feed drain WITHOUT trochar. Aim apex for air, base for fluid.</li>
+                            <li><strong>Connect:</strong> Underwater seal. Confirm: Swinging + fogging of tube.</li>
+                            <li><strong>Secure:</strong> Suture. Occlusive dressing. Mark drain at skin level.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 No finger sweep in small children — insert with forceps guidance only. No trochar technique in any paediatric patient.</span>
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/chest tube.png" class="diagram-img" alt="Triangle of Safety">
+                    <div class="diagram-caption">Triangle of Safety — 4th/5th ICS anterior axillary line</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 13: CHEST DRAIN FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-blue">
+        <div class="main-header" style="background-color: var(--paeds-primary);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Chest Drain (Open)</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li>SIZE: 4×ETT size (French) | Triangle of Safety: 4th/5th ICS, anterior axillary line | NEVER use trochar in children</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">NEEDLE DECOMPRESSION (if tension suspected)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>2nd ICS mid-clavicular line OR 4th/5th ICS anterior axillary line</li>
+                    <li>Use 14-16G cannula (18G if &lt;5yrs)</li>
+                    <li>Remove needle, leave cannula. Definitive drain follows.</li>
+                </ul>
+                <span class="paeds-tip">🩺 In small children, needle decompression may need repeating — chest wall thinner and cannula kinks easily.</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">SKIN INCISION</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Pause 5 seconds. Confirm triangle of safety landmarks.</li>
+                    <li>Horizontal incision, 1.5-2cm, parallel to rib, above lower rib.</li>
+                    <li>LA max: <span class="dose-paeds">3mg/kg lignocaine</span> (NOT 5mg/kg — children more sensitive)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">BLUNT DISSECTION &amp; ENTRY</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Artery clip over superior rib border into pleural space.</li>
+                    <li>Feel 'give'. Do NOT use trochar.</li>
+                    <li>Older children (&gt;8): single finger sweep. Young children: forceps only.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">INSERT DRAIN &amp; CONNECT</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Feed drain WITHOUT trochar. Aim: apex = air, base = fluid.</li>
+                    <li>Connect underwater seal. Confirm swing/fogging.</li>
+                    <li>Suture and dress. Mark at skin level.</li>
+                </ul>
+                <span class="pro-tip">If &gt;10ml/kg drains in first hour — clamp and call thoracics immediately.</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">CONFIRM &amp; ESCALATE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>CXR to confirm position | Suction: -5 to -10 cmH2O | Monitor hourly drainage output</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stop-box">
+            Massive haemothorax (&gt;10ml/kg in first hour): CLAMP DRAIN. Activate Major Haemorrhage Protocol. Transfer to thoracics.
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.piernetwork.org%2Fchest-drains.html" class="ref-qr" alt="QR Code">
+            PIER Network Paediatric Chest Drain Guidelines | DFTB (Don't Forget the Bubbles) 2026
+            <a href="https://www.piernetwork.org/chest-drains.html" target="_blank" class="ref-link-text">PIER Network</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--paeds-primary);"><span>THORACIC EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 14: PERICARDIOCENTESIS WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--purple-bg);"><span>CARDIAC EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--purple-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Pericardiocentesis</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        <strong>INDICATION:</strong> Cardiac tamponade causing haemodynamic compromise or cardiac arrest<br><br>
+                        <strong>Beck's Triad:</strong> Hypotension + Muffled heart sounds + JVD<br>
+                        (JVD unreliable in children — use USS)<br><br>
+                        • <strong>ULTRASOUND-GUIDED</strong> preferred at all times — blind technique only in arrest/immediately life-threatening<br>
+                        • USS findings: Pericardial effusion with right ventricular diastolic collapse<br>
+                        • In children: USS subxiphoid or parasternal view. Pericardium ~5cm from skin surface.
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Sterile Drape / Gown Pack</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>18G spinal needle</strong> or Seldinger pericardiocentesis kit</div>
+                        <div class="checklist-item"><div class="checkbox"></div> 10/20ml Syringe with 3-way tap</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Ultrasound machine (if available)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> ECG monitoring (continuous)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Guidewire (if Seldinger technique)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Pigtail catheter (if indwelling drain)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Lignocaine 1% (max <span class="dose-paeds">3mg/kg</span>)</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">PERICARDIOCENTESIS KIT ON HALO TROLLEY</div>
+                </div>
+
+                <div class="wt-box" style="margin-top: 3mm;">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • Leave drain/catheter in place if ongoing effusion likely<br>
+                        • Reassess ECG + USS<br>
+                        • ICU admission<br>
+                        • Monitor for recurrence (especially in malignancy, sepsis)
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--purple-bg);">
+                    <div class="wt-box-header">Procedure Walkthrough</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>Position:</strong> Supine, 30-45° head-up tilt (brings heart closer to chest wall).</li>
+                            <li><strong>USS:</strong> Identify effusion. Mark optimal puncture site. Largest fluid pocket, shortest path. Mark on skin.</li>
+                            <li><strong>Clean:</strong> Chlorhexidine. Sterile drape. LA at puncture site (<span class="dose-paeds">3mg/kg max</span>).</li>
+                            <li><strong>Needle Insertion (Subxiphoid):</strong> 18G needle, subxiphoid angle — junction of xiphoid and left costal margin. Aim 15° posterior toward LEFT shoulder. Advance with continuous aspiration. USS-guided: watch needle tip enter pericardium.</li>
+                            <li><strong>Aspiration:</strong> Aspirate pericardial fluid. Even 20-50ml can dramatically improve haemodynamics.</li>
+                            <li><strong>Seldinger:</strong> If indwelling drain needed — introduce guidewire, remove needle, dilate, insert pigtail catheter.</li>
+                            <li><strong>Secure:</strong> Suture. Connect to 3-way tap.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 Skin-to-pericardium distance ~5cm in children. Do not advance beyond this without USS guidance. Use 18G needle (NOT larger).</span>
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/pericardiocentesis.jpg" class="diagram-img" alt="Pericardiocentesis">
+                    <div class="diagram-caption">Subxiphoid approach: 15° toward left shoulder</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 15: PERICARDIOCENTESIS FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-purple">
+        <div class="main-header" style="background-color: var(--purple-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Pericardiocentesis</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li>TAMPONADE SIGNS: Hypotension + Muffled sounds + JVD (Beck's triad — JVD unreliable in children) | USS: RV diastolic collapse | Pulsus paradoxus &gt;10mmHg</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">USS-GUIDED ASSESSMENT</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Confirm effusion on USS. RV diastolic collapse = tamponade.</li>
+                    <li>Mark largest fluid pocket / shortest path on skin.</li>
+                    <li>Subxiphoid window preferred in trauma.</li>
+                </ul>
+                <span class="pro-tip">In cardiac arrest — proceed without USS. Subxiphoid blind technique: aim 15° toward left shoulder.</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">NEEDLE INSERTION (Subxiphoid)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Pause 5 seconds. Confirm landmarks.</li>
+                    <li>18G needle at xiphoid-costal margin junction.</li>
+                    <li>Angle 15° posterior toward LEFT shoulder.</li>
+                    <li>Advance with continuous aspiration. USS-guided: watch needle tip. Stop on aspiration of fluid.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">ASPIRATION</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Aspirate: even 20-50ml improves haemodynamics significantly.</li>
+                    <li>If blood: check — does it clot? (ventricular blood clots, pericardial blood does not)</li>
+                    <li>3-way tap — alternate aspiration and closure.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">SELDINGER (if indwelling drain needed)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Introduce guidewire through needle. Remove needle.</li>
+                    <li>Dilate tract. Insert pigtail catheter.</li>
+                    <li>Suture and connect to closed drainage system.</li>
+                </ul>
+                <span class="paeds-tip">🩺 Skin-to-pericardium ~5cm in children. 18G needle only.</span>
+            </div>
+        </div>
+
+        <div class="stop-box">
+            FAILURE/DETERIORATION: Consider cardiac injury → emergent thoracotomy. If aspirated blood clots immediately → likely ventricular puncture → withdraw needle.
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.rch.org.au%2Fclinicalguide%2F" class="ref-qr" alt="QR Code">
+            RCPCH Emergency Pericardiocentesis Guidance | RCH Clinical Guidelines
+            <a href="https://www.rch.org.au/clinicalguide/" target="_blank" class="ref-link-text">RCH Clinical Guidelines</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--purple-bg);"><span>CARDIAC EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 16: EXTERNAL PACING WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--purple-bg);"><span>CARDIAC EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--purple-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>External (Transcutaneous) Pacing</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        <strong>INDICATIONS:</strong> Symptomatic bradycardia not responding to atropine/adrenaline | Complete heart block | Drug-induced bradycardia (beta-blocker, digoxin, CCB overdose)<br><br>
+                        <strong>CONTRAINDICATIONS:</strong> Hypothermia as primary cause (rewarm first) | Asystole in non-shockable cardiac arrest<br><br>
+                        <strong>PAEDS PACING SETTINGS:</strong><br>
+                        Rate: <span class="dose-paeds">80-100 bpm</span> (NOT adult default 60)<br>
+                        mA: Start at <span class="dose-paeds">10mA</span>. Increase in 10mA increments until electrical capture<br>
+                        Output: Set <span class="dose-paeds">5-10mA ABOVE</span> capture threshold<br>
+                        Mode: DEMAND if intrinsic rhythm present. NON-DEMAND during CPR or no intrinsic rhythm<br><br>
+                        <strong>PAD SIZE:</strong><br>
+                        &lt;15kg (approx &lt;2yrs): <strong>Paediatric combo pads</strong><br>
+                        &gt;15kg: Adult combo pads acceptable<br>
+                        <strong>Placement:</strong> Anterior-posterior preferred (right of sternum + left posterior subscapular)
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Defibrillator/pacemaker unit (Zoll, Lifepak)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Paediatric combo pads</strong> (if &lt;15kg)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Limb leads (4-lead ECG monitoring)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Backup IV/IO access</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Analgesia + sedation</strong> (pacing is painful)</div>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 3px solid var(--purple-bg);">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • Confirm mechanical capture: palpate femoral pulse for each paced beat<br>
+                        • Monitor BP<br>
+                        • Arrange urgent cardiology review<br>
+                        • Transfer to PICU/Cardiology
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--purple-bg);">
+                    <div class="wt-box-header">Procedure Steps</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>MONITORING:</strong> Attach 4-lead ECG. Confirm bradycardia. Identify intrinsic rate and P-wave activity.</li>
+                            <li><strong>ANALGESIA:</strong> If conscious — IV/IO analgesia NOW before pacing. Morphine <span class="dose-paeds">0.1mg/kg IV</span> or Ketamine <span class="dose-paeds">0.5-1mg/kg IV</span></li>
+                            <li><strong>PADS:</strong> Apply combo pads. &lt;15kg = paediatric pads. Anterior-posterior placement preferred.</li>
+                            <li><strong>SET RATE:</strong> <span class="dose-paeds">80-100 bpm</span></li>
+                            <li><strong>SET mA TO ZERO:</strong> Confirm pacemaker recognising QRS complexes.</li>
+                            <li><strong>INCREASE mA:</strong> Start at 10mA. Increase by 10mA increments. Electrical capture = pacing spike + wide QRS on ECG.</li>
+                            <li><strong>SET FINAL OUTPUT:</strong> Set <span class="dose-paeds">5-10mA ABOVE</span> capture threshold.</li>
+                            <li><strong>CONFIRM MECHANICAL CAPTURE:</strong> Palpate pulse for each captured beat. DO NOT rely on ECG alone.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 Pacing is painful. Do not delay analgesia in a conscious child. External pacing is a bridge — arrange definitive rhythm management urgently.</span>
+                        <span class="paeds-tip" style="margin-top: 4px;">🩺 In CPR — use NON-DEMAND mode (chest compressions interfere with QRS sensing in demand mode).</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 17: EXTERNAL PACING FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-purple">
+        <div class="main-header" style="background-color: var(--purple-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>External (Transcutaneous) Pacing</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li>PACING RATE: 80-100 bpm | START at 10mA, increase in 10mA steps | PADS: &lt;15kg = paediatric pads | CONFIRM MECHANICAL capture — not just electrical</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">PREPARE &amp; MEDICATE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>4-lead ECG monitoring. Confirm bradycardia.</li>
+                    <li>Analgesia if conscious: Morphine <span class="dose-paeds">0.1mg/kg IV</span> OR Ketamine <span class="dose-paeds">0.5mg/kg IV</span> <span class="drug-badge">Give Now</span></li>
+                    <li>Apply combo pads: &lt;15kg = paediatric, &gt;15kg = adult. Anterior-posterior preferred.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">SET UP PACER</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Set mode: DEMAND if intrinsic rhythm. NON-DEMAND during CPR.</li>
+                    <li>Set rate: <span class="dose-paeds">80-100 bpm</span>.</li>
+                    <li>Set mA to ZERO initially. Confirm pacemaker recognises QRS.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">ACHIEVE CAPTURE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Increase mA from 10mA in 10mA increments.</li>
+                    <li>ELECTRICAL capture = pacing spike + wide QRS complex on ECG.</li>
+                    <li>Set final output <span class="dose-paeds">5-10mA ABOVE</span> threshold.</li>
+                </ul>
+                <span class="pro-tip">In young children, max output may be needed — do not stop early.</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">CONFIRM MECHANICAL CAPTURE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Palpate femoral pulse — confirm pulse for each paced beat.</li>
+                    <li>Do NOT rely on ECG trace alone.</li>
+                    <li>If no mechanical capture despite electrical capture → check output, reposition pads.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">ESCALATE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Arrange urgent cardiology review. Transfer to PICU. Monitor BP.</li>
+                </ul>
+                <span class="paeds-tip">🩺 External pacing is a bridge only. Arrange transvenous or internal pacing urgently.</span>
+                <div class="plan-b-box">
+                    <div class="plan-b-title">⚠️ No capture at maximum mA</div>
+                    Reposition pads to anterior-posterior. Ensure good skin contact. Consider adrenaline IV <span class="dose-paeds">10mcg/kg</span> if no response.
+                </div>
+            </div>
+        </div>
+
+        <div class="stop-box">
+            Hypothermia primary cause → STOP pacing. Prioritise rewarming. Pacing will not work in severe hypothermia.
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.resus.org.uk%2Fprofessional-library%2F2025-resuscitation-guidelines%2Fpaediatric-basic-life-support-guidelines" class="ref-qr" alt="QR Code">
+            Resuscitation Council UK PALS 2025 | Starship Hospital Pacing Guidelines
+            <a href="https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/paediatric-basic-life-support-guidelines" target="_blank" class="ref-link-text">RCUK PALS 2025</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--purple-bg);"><span>CARDIAC EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 18: SUBCLAVIAN CENTRAL LINE WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--green-bg);"><span>VASCULAR ACCESS</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--green-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Subclavian / Brachiocephalic Central Line</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        <strong>INDICATION IN PAEDS:</strong> Massive haemorrhage requiring rapid large-bore central access. NOT for cardiac arrest (use IO access in cardiac arrest).<br><br>
+                        <strong>PAEDIATRIC PREFERRED APPROACH:</strong><br>
+                        • USS-guided <strong>supraclavicular brachiocephalic vein</strong> (jugulo-subclavian junction) — recommended by European societies for children<br>
+                        • Internal jugular (USS-guided): High transfixion risk in children &lt;5yrs (50%) and infants (75%) — use with caution<br>
+                        • Infraclavicular subclavian: Higher complication rate in small children; acceptable in older adolescents<br>
+                        • <strong>USS MANDATORY</strong> in paediatric patients<br><br>
+                        <strong>SIZE GUIDE:</strong><br>
+                        &lt;5kg: 3Fr | 5-15kg: 4Fr | 15-30kg: 5Fr (double lumen) | &gt;30kg: 7Fr<br><br>
+                        <strong>INSERTION DEPTH:</strong><br>
+                        &lt;1yr: 3-4cm | 1-5yrs: 4-6cm | 6-12yrs: 6-8cm | &gt;12yrs: 8-10cm
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine + Sterile Drape</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Ultrasound machine + sterile cover</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> Central line kit: appropriate French size</div>
+                        <div class="checklist-item"><div class="checkbox"></div> LA: Lignocaine 1% (max <span class="dose-paeds">3mg/kg</span>)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> 10ml syringe with normal saline flush</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Suture (2-0 silk or Prolene)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> CVC dressing kit</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">CENTRAL LINE KIT ON HALO TROLLEY</div>
+                </div>
+
+                <div class="wt-box" style="margin-top: 3mm;">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • CXR to confirm position and exclude pneumothorax<br>
+                        • Document insertion depth (cm at skin)<br>
+                        • Convert to IO access for cardiac arrest — central line placement wastes time
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--green-bg);">
+                    <div class="wt-box-header">USS-Guided Supraclavicular Approach</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>Position:</strong> 10-15° Trendelenburg. Head turned slightly away from puncture site.</li>
+                            <li><strong>USS:</strong> Identify brachiocephalic vein (jugulo-subclavian junction) in supraclavicular fossa. Identify subclavian artery (pulsatile).</li>
+                            <li><strong>Clean:</strong> Chlorhexidine. Sterile drape. Sterile USS cover.</li>
+                            <li><strong>LA:</strong> Infiltrate subcutaneous tissue. Max <span class="dose-paeds">3mg/kg</span> lignocaine.</li>
+                            <li><strong>Needle:</strong> Insert in-plane with USS beam. Track needle tip into vein. Confirm venous position (non-pulsatile, compressible on USS).</li>
+                            <li><strong>Aspirate:</strong> Free blood return in syringe.</li>
+                            <li><strong>Guidewire:</strong> Insert J-wire through needle. Confirm on USS. Remove needle.</li>
+                            <li><strong>Dilate:</strong> Skin nick with scalpel. Insert dilator over wire (do NOT advance more than needed).</li>
+                            <li><strong>Line:</strong> Railroad catheter over wire to appropriate depth (see depth guide). Remove wire.</li>
+                            <li><strong>Aspirate + flush</strong> all lumens. Suture and dress. CXR.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 USS is mandatory. Brachiocephalic (supraclavicular) approach preferred over IJ in children &lt;5yrs due to high IJ transfixion risk. Subclavian landmark technique not recommended in children.</span>
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/subclavian.jpg" class="diagram-img" alt="USS-guided supraclavicular approach">
+                    <div class="diagram-caption">USS-guided supraclavicular brachiocephalic approach preferred in paeds</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 19: SUBCLAVIAN CENTRAL LINE FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-green">
+        <div class="main-header" style="background-color: var(--green-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Subclavian / Brachiocephalic Central Line</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li>IO ACCESS for cardiac arrest — do NOT delay with CVC insertion | USS MANDATORY in paediatric central line insertion | Supraclavicular brachiocephalic approach preferred in children</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">POSITIONING &amp; USS ASSESSMENT</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Trendelenburg 10-15°. Head turned away from side.</li>
+                    <li>USS: Identify brachiocephalic vein + subclavian artery (avoid). Confirm vein compressibility.</li>
+                    <li>Size: Use appropriate French size for age (see walkthrough).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">NEEDLE INSERTION (USS IN-PLANE)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Pause 5 seconds. Confirm landmarks on USS.</li>
+                    <li>Insert needle in-plane. Track tip to vein on USS.</li>
+                    <li>Aspirate freely — confirm non-pulsatile blood return.</li>
+                </ul>
+                <span class="paeds-tip">🩺 If accidental arterial puncture — WITHDRAW needle. Apply firm pressure ≥5 mins. Do NOT dilate or insert catheter.</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">SELDINGER TECHNIQUE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Insert J-wire through needle. Confirm on USS — wire visible in vein.</li>
+                    <li>Remove needle. Skin nick. Dilate over wire carefully.</li>
+                    <li>Railroad catheter to appropriate depth (see size guide).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">CONFIRM &amp; SECURE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Aspirate + flush all lumens. Suture and dress.</li>
+                    <li>CXR mandatory — confirm position, exclude pneumothorax.</li>
+                </ul>
+                <span class="pro-tip">Mark insertion depth on catheter at skin level with steristrip. Document in notes.</span>
+            </div>
+        </div>
+
+        <div class="stop-box">
+            Complications: Pneumothorax (CXR mandatory) | Arterial puncture (withdraw, pressure) | Line malposition (confirm on CXR before use) | Air embolism (Trendelenburg position during insertion reduces risk)
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.resus.org.uk%2Fprofessional-library%2F2025-resuscitation-guidelines" class="ref-qr" alt="QR Code">
+            VascuFirst Paediatric CVC Guidelines | Yorkshire and Humber Paediatric Major Trauma Guidelines
+            <a href="https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines" target="_blank" class="ref-link-text">RCUK 2025 Guidelines</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--green-bg);"><span>VASCULAR ACCESS</span></div>
+</div>
+
+<!-- ===== PAGE 20: LATERAL CANTHOTOMY WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--orange-bg);"><span>OPHTHALMOLOGY EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--orange-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Lateral Canthotomy &amp; Cantholysis</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Indications</div>
+                    <div class="wt-box-content">
+                        <strong>INDICATION:</strong> Orbital Compartment Syndrome (OCS) — retrobulbar haemorrhage causing:<br>
+                        • IOP &gt;30-40 mmHg (normal &lt;20 mmHg)<br>
+                        • Proptosis<br>
+                        • Relative afferent pupillary defect (RAPD)<br>
+                        • Reduced visual acuity<br>
+                        • Taut eyelids / chemosis<br><br>
+                        <strong>MECHANISM:</strong> Blunt orbital trauma (most common). Also: infection, burns, post-procedural.<br><br>
+                        <strong>TIME-CRITICAL:</strong> Vision loss within 60-100 minutes of ischaemia<br><br>
+                        <span class="paeds-tip">🩺 Technique identical to adult. Procedural sedation MORE IMPORTANT in children — a moving patient risks globe injury.</span><br><br>
+                        <strong style="color: #b71c1c;">ABSOLUTE CONTRAINDICATION:</strong> Suspected globe rupture (irregular pupil, hyphema, laceration, low IOP &lt;5mmHg)
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Chlorhexidine</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Topical anaesthetic eye drops (tetracaine/proxymetacaine)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> LA: Lignocaine 1% with adrenaline — 2ml at lateral canthus</div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Straight haemostat (artery clip)</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Small sterile scissors (iris scissors preferred)</strong></div>
+                        <div class="checklist-item"><div class="checkbox"></div> Toothed forceps</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Tonometer (Tono-Pen) if available</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">CANTHOTOMY EQUIPMENT ON HALO TROLLEY</div>
+                </div>
+
+                <div class="wt-box" style="margin-top: 3mm;">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • Re-measure IOP — should fall significantly<br>
+                        • If IOP still elevated: proceed to superior cantholysis<br>
+                        • Ophthalmology referral (urgent — same day or within hours)<br>
+                        • Wound heals spontaneously — no formal repair needed acutely
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--orange-bg);">
+                    <div class="wt-box-header">Procedure Steps</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>ANALGESIA/SEDATION:</strong> Procedural sedation if child is not cooperative (vital — avoid globe injury). Ketamine <span class="dose-paeds">1-2mg/kg IV</span>.</li>
+                            <li><strong>TOPICAL ANAESTHESIA:</strong> Apply tetracaine drops to both eyes.</li>
+                            <li><strong>LOCAL ANAESTHESIA:</strong> 2ml lignocaine 1% with adrenaline at lateral canthus. Inject parallel to globe surface — keep needle away from orbit.</li>
+                            <li><strong>HAEMOSTAT CRUSH:</strong> Apply straight haemostat horizontally at lateral canthus for 30-60 seconds — devascularises tissue, reduces bleeding.</li>
+                            <li><strong>CANTHOTOMY:</strong> Remove haemostat. Cut along crushed tissue from lateral canthus to lateral orbital rim (~1cm). Scissors aimed AWAY from globe (toward lateral orbital rim).</li>
+                            <li><strong>IDENTIFY TENDON:</strong> Retract lower eyelid medially. Palpate/strum inferior crus of lateral canthal tendon with scissors tip.</li>
+                            <li><strong>CANTHOLYSIS:</strong> Cut inferior canthal tendon — scissors pointed DOWN and AWAY from orbit. Lower lid should fall away.</li>
+                            <li><strong>CHECK:</strong> Immediate globe proptosis and lower lid mobility confirm success.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 Child cooperation is critical — do not perform this without sedation if child is moving. Ketamine procedural sedation is first-line.</span>
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/canthotomy.png" class="diagram-img" alt="Canthotomy">
+                    <div class="diagram-caption">Canthotomy then cantholysis: inferior crus first</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 21: LATERAL CANTHOTOMY FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-orange">
+        <div class="main-header" style="background-color: var(--orange-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Lateral Canthotomy &amp; Cantholysis</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="halo-badge">🧰 HALO TROLLEY</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li>IOP &gt;30-40mmHg + proptosis/RAPD/vision loss = PROCEED | Globe rupture = CONTRAINDICATED | WINDOW: 60-100 mins before permanent vision loss | SEDATE CHILD before procedure</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">CONFIRM INDICATION</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>IOP &gt;30-40mmHg with: proptosis OR RAPD OR vision loss</li>
+                    <li>Exclude globe rupture (irregular pupil, hyphema, laceration, IOP &lt;5mmHg)</li>
+                    <li>Procedural sedation: Ketamine <span class="dose-paeds">1-2mg/kg IV</span> <span class="drug-badge">Give Now</span></li>
+                    <li>Topical anaesthetic drops + 2ml lignocaine 1%+adrenaline lateral canthus.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">HAEMOSTAT CRUSH</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Apply straight haemostat horizontally — lateral canthus to lateral orbital rim.</li>
+                    <li>Crush for 30-60 seconds. Devascularises tissue.</li>
+                </ul>
+                <span class="paeds-tip">🩺 Ensure scissors ALWAYS point away from globe and toward lateral orbital rim.</span>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">CANTHOTOMY (1cm INCISION)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Remove haemostat.</li>
+                    <li>Cut along crushed tissue: lateral canthus to lateral orbital rim (~1cm).</li>
+                    <li>Scissors AWAY from globe — toward lateral rim.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">CANTHOLYSIS (CUT INFERIOR TENDON)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Retract lower lid medially. Strum inferior crus of lateral canthal tendon.</li>
+                    <li>Scissors pointed DOWN and AWAY. Sever inferior canthal tendon.</li>
+                    <li>Lower lid falls away = successful cantholysis.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">CHECK IOP &amp; ESCALATE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Re-measure IOP — should fall significantly. Globe prolapses forward = decompression.</li>
+                    <li>If IOP still high → Superior cantholysis (caution: lacrimal artery risk).</li>
+                </ul>
+                <span class="pro-tip">Wound heals spontaneously. No immediate repair needed. Refer ophthalmology same day.</span>
+                <div class="plan-b-box">
+                    <div class="plan-b-title">⚠️ IOP remains elevated after inferior cantholysis</div>
+                    Superior cantholysis: cut superior crus (increased bleeding risk). If still fails → Surgical orbital decompression (ophthalmology/maxfax).
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Feyewiki.org%2FOrbital_Compartment_Syndrome" class="ref-qr" alt="QR Code">
+            EyeWiki OCS Guidelines | JACEM Open 2021
+            <a href="https://eyewiki.org/Orbital_Compartment_Syndrome" target="_blank" class="ref-link-text">EyeWiki OCS</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--orange-bg);"><span>OPHTHALMOLOGY EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 22: SEVERE MAX-FAX BLEED WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--orange-bg);"><span>SPECIALIST EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--orange-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Severe Max-Fax Bleed</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions — Airway is the Priority</div>
+                    <div class="wt-box-content">
+                        <strong>PAEDIATRIC PRINCIPLE:</strong> Airway management is MORE difficult in paediatric maxillofacial trauma — smaller anatomy, less space, active bleeding<br><br>
+                        <strong>Causes:</strong> Facial fractures, post-tonsillectomy bleed (common in paeds), dental trauma, penetrating injury, epistaxis (posterior)<br><br>
+                        • Call <strong>2222</strong> "Maxillofacial Emergency" + ENT/OMFS<br>
+                        • Call: Anaesthetics (difficult airway must be anticipated)<br>
+                        • <strong>Position:</strong> Upright and leaning forward if conscious — allows blood to drain forward<br>
+                        • Do NOT put child supine if they are protecting airway by sitting forward<br><br>
+                        <strong>AIRWAY MANAGEMENT:</strong><br>
+                        • If patient maintaining airway — allow them to sit forward and spit blood — do NOT force supine<br>
+                        • If compromised: RSI with video laryngoscopy (C-MAC paediatric blade) — anticipate difficult grade<br>
+                        • ETT: cuffed, sized <span class="dose-paeds">(Age÷4)+3.5</span><br>
+                        • Have surgical airway equipment (eFONA/tracheotomy kit) immediately available
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> Yankauer suction ×2</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Wide-bore suction</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Nasopharyngeal airway (diameter = little finger)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Video laryngoscopy (C-MAC paediatric blade)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Cuffed ETT — age-appropriate</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Rapid Rhino 7.5cm bilateral nasal packs</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Foley catheter 8-10F (posterior nasal tamponade)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Xylometazoline 0.05% (&lt;12yrs) or 0.1% (&gt;12yrs)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> TXA: <span class="dose-paeds">15mg/kg IV (max 1g)</span></div>
+                        <div class="checklist-item"><div class="checkbox"></div> Silver nitrate sticks</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">MAXFAX EMERGENCY TROLLEY IN RESUS</div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--orange-bg);">
+                    <div class="wt-box-header">Anatomical Control Points</div>
+                    <div class="wt-box-content">
+                        <strong>1. ANTERIOR EPISTAXIS (Little's Area):</strong><br>
+                        Direct pressure + silver nitrate cautery. Anterior nasal pack (BIPP/Rapid Rhino).<br><br>
+                        <strong>2. POSTERIOR EPISTAXIS:</strong><br>
+                        Rapid Rhino bilateral packs (7.5cm). If not available: Foley 8-10F via nostril: inflate 10ml water, pull forward. Pack anterior with BIPP or Rapid Rhino.<br><br>
+                        <strong>3. FRACTURED ZYGOMA / MAXILLA:</strong><br>
+                        Direct pressure to soft tissues. Manual reduction of Le Fort fractures can reduce arterial bleeding (senior maxfax only). Angiographic embolisation if available (tertiary centre).<br><br>
+                        <strong>4. OROPHARYNGEAL / TONSILLAR BLEED:</strong><br>
+                        Direct suction + pack with damp gauze. Adrenaline-soaked gauze (1:10,000) for local vasospasm. Post-tonsillectomy: Common in paediatric ED — reactionary (within 6hrs) usually venous, responds to pressure; arterial = immediate theatre.<br><br>
+                        <strong>Drug Doses:</strong><br>
+                        TXA: <span class="dose-paeds">15mg/kg IV over 10 mins (max 1g)</span> — give early<br>
+                        Xylometazoline: 0.05% spray (&lt;12yrs), 0.1% (&gt;12yrs)<br>
+                        Adrenaline soaked gauze: 1:10,000 topical
+                    </div>
+                </div>
+                <span class="paeds-tip" style="display:block; margin-top: 3mm;">🩺 Post-tonsillectomy haemorrhage is the commonest maxfax bleed in paediatric ED. Reactionary (within 6hrs) is usually venous. Secondary (day 5-10) often more significant — may require return to theatre.</span>
+
+                <div class="wt-box" style="margin-top: 3mm; border-top: 3px solid var(--orange-bg);">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • Definitive control: Operating theatre with ENT/OMFS — this is a bridge<br>
+                        • Imaging: CT face if facial fractures suspected<br>
+                        • Major Haemorrhage Protocol if significant blood loss<br>
+                        • Transfer to ENT/OMFS or Paediatric Surgical unit
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 23: SEVERE MAX-FAX BLEED FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-orange">
+        <div class="main-header" style="background-color: var(--orange-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Severe Max-Fax Bleed</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li>AIRWAY FIRST — anticipate difficult intubation in all paediatric maxfax bleeding | Sit forward if conscious — do NOT force supine | Have surgical airway ready</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">SECURE AIRWAY</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Conscious + protecting airway: Sit forward. Suction. High-flow O2.</li>
+                    <li>Compromised: RSI with video laryngoscopy (C-MAC paediatric blade). ETT = <span class="dose-paeds">(Age÷4)+3.5</span></li>
+                    <li>Have eFONA/tracheotomy kit open and ready.</li>
+                </ul>
+                <span class="paeds-tip">🩺 If child is sitting forward draining blood — this is working. Do not force supine.</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">HAEMORRHAGE CONTROL — ANTERIOR EPISTAXIS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Direct pressure: pinch soft part of nose for 10-15 mins</li>
+                    <li>Silver nitrate to Kiesselbach's plexus if visible</li>
+                    <li>Anterior pack: Rapid Rhino or BIPP (lubricated, along floor of nose)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">HAEMORRHAGE CONTROL — POSTERIOR EPISTAXIS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Rapid Rhino bilateral 7.5cm packs</li>
+                    <li>If not available: Foley 8-10F via nostril. Inflate 10ml water. Pull forward. Pack anterior space.</li>
+                    <li>TXA: <span class="dose-paeds">15mg/kg IV over 10 mins (max 1g)</span> <span class="drug-badge">Give Now</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">TONSILLAR / OROPHARYNGEAL BLEED</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Suction + direct pressure with damp gauze</li>
+                    <li>Adrenaline 1:10,000 soaked gauze — topical vasospasm</li>
+                    <li>Post-tonsillectomy: reactionary (within 6hrs) usually responds to pressure; secondary (day 5-10) = likely theatre</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">ESCALATE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Major Haemorrhage Protocol if significant loss. Urgent ENT/OMFS review.</li>
+                    <li>CT face if fractures suspected. Transfer to theatre or tertiary centre.</li>
+                </ul>
+                <div class="plan-b-box">
+                    <div class="plan-b-title">⚠️ Uncontrolled posterior epistaxis despite packing</div>
+                    Angiographic embolisation or surgical ligation. Transfer to ENT/OMFS tertiary centre urgently.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.rcem.ac.uk%2FClinical-Guidance" class="ref-qr" alt="QR Code">
+            RCEM Learning Max-Fax | British Association of Oral and Maxillofacial Surgeons
+            <a href="https://www.rcem.ac.uk/Clinical-Guidance" target="_blank" class="ref-link-text">RCEM Clinical Guidance</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--orange-bg);"><span>SPECIALIST EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 24: LAST WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--yellow-bg);"><span style="color: black;">ANAESTHETIC EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--yellow-bg); color: black;">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1 style="color: black;">LAST — Local Anaesthetic Systemic Toxicity</h1>
+            <h2 style="color: black; background-color: rgba(0,0,0,0.15);">Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Initial Actions &amp; Recognition</div>
+                    <div class="wt-box-content">
+                        <strong>RECOGNITION:</strong> Symptoms after local anaesthetic administration<br><br>
+                        <strong>CNS Features (early):</strong> Metallic taste, circumoral numbness, tinnitus, confusion, agitation<br>
+                        <strong>CNS Features (late):</strong> Seizures, coma, respiratory arrest<br>
+                        <strong>CVS Features:</strong> Widened QRS, QTc prolongation, ventricular arrhythmias, bradycardia, cardiac arrest<br><br>
+                        <strong>Highest risk drugs:</strong> Bupivacaine &gt;&gt; Levobupivacaine &gt; Ropivacaine &gt; Lignocaine<br><br>
+                        <strong>MAXIMUM SAFE DOSES (per ideal body weight):</strong><br>
+                        Bupivacaine: <span class="dose-paeds">2mg/kg</span> (alone) | <span class="dose-paeds">3mg/kg</span> (with adrenaline)<br>
+                        Lignocaine: <span class="dose-paeds">3mg/kg</span> (alone) | <span class="dose-paeds">5mg/kg</span> (with adrenaline)<br>
+                        Ropivacaine: <span class="dose-paeds">3mg/kg</span><br>
+                        Prilocaine: <span class="dose-paeds">5mg/kg</span> (alone) | <span class="dose-paeds">7mg/kg</span> (with adrenaline)<br><br>
+                        Toxicity can occur BELOW these doses with intravascular injection
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment &amp; Drugs</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Intralipid 20%</strong> — from LAST box/trolley</div>
+                        <div class="checklist-item"><div class="checkbox"></div> IV access (or IO)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Standard resuscitation equipment</div>
+                        <div style="margin-top:4px; font-size:8pt; color:#b71c1c; font-weight:700;">
+                            AVOID: Propofol (worsens CVS depression) | Standard dose adrenaline (may impair lipid rescue)<br>
+                            Consider: Sodium bicarbonate 1-2 mmol/kg for wide QRS/refractory arrhythmias
+                        </div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">INTRALIPID 20% — LAST BOX LOCATION: [FILL IN LOCAL LOCATION]</div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--yellow-bg);">
+                    <div class="wt-box-header">PAEDIATRIC INTRALIPID DOSES</div>
+                    <div class="wt-box-content">
+                        <strong>Bolus:</strong> <span class="dose-paeds">1.5ml/kg IV over 1 minute</span> (repeat ×2 if needed, min 5 mins between, max 3 boluses)<br>
+                        <strong>Infusion:</strong> <span class="dose-paeds">15ml/kg/hour</span> → double to <span class="dose-paeds">30ml/kg/hour</span> if unstable<br>
+                        <strong>Maximum cumulative dose: <span class="dose-paeds">12ml/kg</span></strong><br><br>
+                        <strong>Example weights:</strong><br>
+                        10kg: Bolus 15ml | Infusion 150ml/hr | Max 120ml total<br>
+                        20kg: Bolus 30ml | Infusion 300ml/hr | Max 240ml total<br>
+                        30kg: Bolus 45ml | Infusion 450ml/hr | Max 360ml total
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 4px solid var(--yellow-bg);">
+                    <div class="wt-box-header">Procedure Walkthrough</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li>STOP local anaesthetic administration immediately</li>
+                            <li>CALL: 2222. Activate full resuscitation team. Anaesthetics + PICU urgently.</li>
+                            <li>ACLS/PALS as appropriate — continue resuscitation throughout</li>
+                            <li>AIRWAY: 100% O2. Consider intubation early if CNS depression.</li>
+                            <li>SEIZURES: Midazolam <span class="dose-paeds">0.1mg/kg IV/IO</span>. AVOID propofol.</li>
+                            <li>ARRHYTHMIAS: Wide QRS → Sodium bicarbonate <span class="dose-paeds">1-2mmol/kg IV</span>.</li>
+                            <li>INTRALIPID 20%: Bolus <span class="dose-paeds">1.5ml/kg IV over 1 minute</span>. Immediately start infusion <span class="dose-paeds">15ml/kg/hour</span>. Document cumulative dose.</li>
+                            <li>RE-BOLUS: If cardiovascular instability persists → repeat bolus (up to 2 more times, min 5 mins apart).</li>
+                            <li>DOUBLE INFUSION RATE: If instability after 5 mins → increase to <span class="dose-paeds">30ml/kg/hour</span>.</li>
+                            <li>MAX DOSE: Do NOT exceed <span class="dose-paeds">12ml/kg</span> cumulative. Stop infusion once stable.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 Avoid standard-dose adrenaline in LAST — may impair lipid rescue. Use small-dose adrenaline &lt;1mcg/kg if vasopressor needed. Avoid propofol — cardiodepressant effects.</span>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 3px solid var(--yellow-bg);">
+                    <div class="wt-box-header">Post-Procedure</div>
+                    <div class="wt-box-content">
+                        • ICU admission — lipid effect wears off (may re-arrest)<br>
+                        • Monitor: ECG, cardiac enzymes, lipids<br>
+                        • Contact anaesthetics + PICU
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 25: LAST FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-yellow">
+        <div class="main-header" style="background-color: var(--yellow-bg); color: black;">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1 style="color: black;">LAST — Local Anaesthetic Systemic Toxicity</h1>
+            <h2 style="color: black; background-color: rgba(0,0,0,0.15);">Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li>LAST = CNS/CVS toxicity after local anaesthetic | STOP infusion IMMEDIATELY | DO NOT GIVE PROPOFOL | DO NOT give standard-dose adrenaline</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">STOP &amp; CALL</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Stop local anaesthetic administration.</li>
+                    <li>Call 2222. Alert anaesthetics + PICU.</li>
+                    <li>High-flow O2. IV/IO access. Continuous cardiac monitoring.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">TREAT SEIZURES</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Midazolam <span class="dose-paeds">0.1mg/kg IV/IO</span> (max 5mg if &lt;20kg, max 10mg if &gt;20kg) <span class="drug-badge">Give Now</span></li>
+                    <li>AVOID propofol.</li>
+                    <li>If refractory: Levetiracetam <span class="dose-paeds">20mg/kg IV</span>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">INTRALIPID 20% — BOLUS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Bolus: <span class="dose-paeds">1.5ml/kg IV over 1 minute</span>.</li>
+                    <li>Immediately start infusion: <span class="dose-paeds">15ml/kg/hour</span>.</li>
+                    <li>Track cumulative dose — use dose chart on walkthrough.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">INTRALIPID 20% — INFUSION &amp; RE-BOLUS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Wait 5 minutes. Still unstable? Re-bolus: <span class="dose-paeds">1.5ml/kg</span> (max 2 additional boluses — 3 total).</li>
+                    <li>Double infusion: <span class="dose-paeds">30ml/kg/hour</span>.</li>
+                    <li>Continue until stable. MAX <span class="dose-paeds">12ml/kg cumulative</span>.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">CARDIAC ARREST (if occurs)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>PALS algorithm. Continue CPR.</li>
+                    <li>Wide QRS / arrhythmia → Sodium bicarb <span class="dose-paeds">1-2mmol/kg IV</span> <span class="drug-badge">Give</span></li>
+                    <li>Reduce adrenaline dose: <span class="dose-paeds">&lt;1mcg/kg</span> (standard dose may impair lipid rescue)</li>
+                    <li>Continue Intralipid despite arrest</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stop-box">
+            MAX CUMULATIVE DOSE: 12ml/kg. STOP infusion once haemodynamically stable. Monitor for recurrence — ICU admission mandatory.
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fanaesthetists.org%2FHome%2FResources-publications%2FGuidelines%2FManagement-of-severe-local-anaesthetic-toxicity" class="ref-qr" alt="QR Code">
+            AAGBI LAST Guidelines 2023 | PCH Perth Lipid Infusion Protocol | RCH Melbourne LAST Guidelines
+            <a href="https://anaesthetists.org/Home/Resources-publications/Guidelines/Management-of-severe-local-anaesthetic-toxicity" target="_blank" class="ref-link-text">AAGBI LAST Guidelines</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--yellow-bg);"><span style="color: black;">ANAESTHETIC EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 26: SURGICAL AIRWAY WALKTHROUGH ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--paeds-primary);"><span>DAS GUIDELINES 2025</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--paeds-primary);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Surgical Airway — Paediatric CICO</h1>
+            <h2>Page 1: Walkthrough — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="da-badge">⚠️ DIFFICULT AIRWAY TROLLEY</div>
+        </div>
+
+        <div style="background: #b71c1c; color: white; padding: 8px 12px; border-radius: 4px; margin-bottom: 3mm; font-size: 9.5pt; font-weight: 900; text-align: center;">
+            ⚠️ CRITICAL PAEDIATRIC RULE<br>
+            <span style="font-size: 11pt;">AGE ≥ 8 YEARS → eFONA (Scalpel-Bougie-Tube) — SAME AS ADULT</span><br>
+            <span style="font-size: 11pt;">AGE &lt; 8 YEARS → SURGICAL TRACHEOTOMY (trachea too small for cric)</span><br>
+            <span style="font-size: 10pt; background: rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 3px;">NEEDLES FAIL IN BOTH GROUPS — DO NOT USE</span>
+        </div>
+
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Equipment (Both Techniques)</div>
+                    <div class="wt-box-content">
+                        <div class="checklist-item"><div class="checkbox"></div> <strong>Scalpel:</strong> Size 10 (eFONA) or Size 10/15 (Tracheotomy)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Bougie (coude tip — adult for ≥8yrs)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> ETT: ≥8yrs eFONA: <span class="dose-paeds">(Age÷4)+3.5</span> cuffed</div>
+                        <div class="checklist-item"><div class="checkbox"></div> ETT: &lt;8yrs Tracheotomy: <span class="dose-paeds">(Age÷4)+4</span> uncuffed</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Lubricant</div>
+                        <div class="checklist-item"><div class="checkbox"></div> 10ml Syringe (cuff inflation)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Tube tie / fixation</div>
+                        <div class="checklist-item"><div class="checkbox"></div> BVM + EtCO2</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Right-angle retractors (for surgical tracheotomy)</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Shoulder roll (for tracheotomy neck extension)</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 Storage</div>
+                    <div class="storage-text">EQUIPMENT ON DIFFICULT AIRWAY TROLLEY</div>
+                </div>
+
+                <div class="wt-box" style="margin-top: 3mm; border-top: 4px solid var(--paeds-primary);">
+                    <div class="wt-box-header">Tracheotomy — Positioning</div>
+                    <div class="wt-box-content">
+                        • Shoulder roll to allow neck extension (NOT hyperextension)<br>
+                        • Bolster behind shoulders<br>
+                        • Head in neutral — prevent rotation with bolsters<br>
+                        • Mark: nose, chin, sternal notch, xiphoid
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--paeds-primary);">
+                    <div class="wt-box-header">eFONA Technique (Age ≥ 8 Years) — DAS Scalpel-Bougie-Tube</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>POSITION:</strong> Neck extended. Pillow under shoulders.</li>
+                            <li><strong>IDENTIFY CTM:</strong> Laryngeal handshake. Stabilise larynx with non-dominant hand. Index finger identifies CTM.</li>
+                            <li><strong>INCISION:</strong> Transverse stab through CTM. Blade TOWARD YOU.</li>
+                            <li><strong>ROTATE:</strong> Turn scalpel 90° (sharp edge toward FEET). DO NOT WITHDRAW BLADE.</li>
+                            <li><strong>BOUGIE:</strong> Insert down flat side of blade. Advance 10-15cm. Feel clicks/hold-up.</li>
+                            <li><strong>RAILROAD:</strong> Remove scalpel. Railroad lubricated ETT over bougie. Twist to pass membrane.</li>
+                            <li><strong>VENTILATE:</strong> Inflate cuff. Connect BVM. Confirm EtCO2. Secure.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 4px solid #b71c1c;">
+                    <div class="wt-box-header" style="background: #b71c1c; color: white;">Surgical Tracheotomy Technique (Age &lt; 8 Years)</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>POSITION:</strong> Shoulder roll. Neck extension. Bolsters to prevent head rotation.</li>
+                            <li><strong>IDENTIFY MIDLINE:</strong> Mark nose → chin → sternal notch → xiphoid. Draw midline on neck.</li>
+                            <li><strong>SKIN INCISION:</strong> Vertical incision — middle TWO quarters of neck length. Size 10 scalpel.</li>
+                            <li><strong>RETRACTION:</strong> Bilateral right-angle retractors. Equal lateral traction — keep midline intact.</li>
+                            <li><strong>DISSECT TO TRACHEA:</strong> Blunt dissection through platysma and pre-tracheal fascia. Identify tracheal rings.</li>
+                            <li><strong>CUT TRACHEAL RINGS:</strong> Vertical incision cutting 1-2 ANTERIOR tracheal rings only.</li>
+                            <li><strong>INSERT BOUGIE:</strong> Insert bougie through tracheal incision.</li>
+                            <li><strong>RAILROAD ETT:</strong> Railroad age-appropriate uncuffed ETT over bougie.</li>
+                            <li><strong>VENTILATE:</strong> Connect BVM. Confirm EtCO2. Secure with tube tie.</li>
+                        </ol>
+                        <span class="paeds-tip">🩺 Cut only ANTERIOR rings (1-2). Do not cut lateral walls — recurrent laryngeal nerve injury.</span>
+                    </div>
+                </div>
+
+                <div class="diagram-container">
+                    <img src="images/efona.png" class="diagram-img" alt="Surgical airway">
+                    <div class="diagram-caption">eFONA (≥8yrs): Laryngeal handshake | Tracheotomy (&lt;8yrs): Vertical midline to tracheal rings</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ===== PAGE 27: SURGICAL AIRWAY FLOWCHART ===== -->
+<div class="page">
+    <div class="content-area theme-blue">
+        <div class="main-header" style="background-color: var(--paeds-primary);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>Surgical Airway — Paediatric CICO</h1>
+            <h2>Page 2: Action Flowchart — DAS 2025 | AGE-SPLIT TECHNIQUE</h2>
+            <div class="da-badge">⚠️ DIFFICULT AIRWAY TROLLEY</div>
+        </div>
+
+        <div class="section step-warning" style="border: 3px solid #b71c1c; background: #b71c1c;">
+            <div class="section-content" style="color: white; font-weight: 900; font-size: 10.5pt; padding: 10px 14px;">
+                ⚠️ DECLARE CICO — OPEN DIFFICULT AIRWAY TROLLEY — CALL 2222<br>
+                AGE ≥ 8 YEARS: eFONA (Scalpel-Bougie-Tube)<br>
+                AGE &lt; 8 YEARS: SURGICAL TRACHEOTOMY — NOT CRICOTHYROTOMY<br>
+                NEEDLES FAIL — DO NOT USE A NEEDLE
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">DECLARE &amp; PREPARE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>"Can't Intubate, Can't Oxygenate — proceeding to front of neck."</li>
+                    <li>100% O2. Neck extended. Open Difficult Airway Trolley.</li>
+                    <li><strong>AGE CHECK:</strong> ≥8 yrs → eFONA pathway | &lt;8 yrs → Tracheotomy pathway</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="display:flex; gap:4mm; flex-grow:1;">
+            <div style="flex:1; display:flex; flex-direction:column; gap:3mm;">
+                <div style="background:#1565c0; color:white; padding:4px 8px; font-weight:900; font-size:9pt; border-radius:3px; text-align:center;">PATH A: eFONA (≥8 YEARS)</div>
+
+                <div class="section step-critical">
+                    <div class="section-header"><div class="icon-box">2a</div><div class="section-title">INCISION (eFONA)</div></div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Pause 5 seconds. Laryngeal handshake — identify CTM.</li>
+                            <li>Transverse STAB through CTM. Blade TOWARD YOU.</li>
+                            <li>Rotate scalpel 90° (sharp edge toward feet). DO NOT WITHDRAW.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section step-critical">
+                    <div class="section-header"><div class="icon-box">3a</div><div class="section-title">RAILROAD (eFONA)</div></div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Insert bougie down FLAT SIDE of blade. 10-15cm. Feel clicks.</li>
+                            <li>Remove scalpel. Railroad lubricated ETT = <span class="dose-paeds">(Age÷4)+3.5</span> cuffed.</li>
+                            <li>Twist to pass membrane. Inflate cuff.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="flex:1; display:flex; flex-direction:column; gap:3mm;">
+                <div style="background:#b71c1c; color:white; padding:4px 8px; font-weight:900; font-size:9pt; border-radius:3px; text-align:center;">PATH B: SURGICAL TRACHEOTOMY (&lt;8 YEARS)</div>
+
+                <div class="section step-critical">
+                    <div class="section-header"><div class="icon-box">2b</div><div class="section-title">INCISION (Tracheotomy)</div></div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Mark midline. Vertical skin incision — middle two quarters of neck length.</li>
+                            <li>Blunt dissect through platysma to pre-tracheal fascia.</li>
+                            <li>Bilateral retraction — maintain midline strictly.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section step-critical">
+                    <div class="section-header"><div class="icon-box">3b</div><div class="section-title">TRACHEAL ENTRY (Tracheotomy)</div></div>
+                    <div class="section-content">
+                        <ul>
+                            <li>Identify tracheal rings. Cut 1-2 ANTERIOR rings only. Vertical incision.</li>
+                            <li>Insert bougie through tracheal opening.</li>
+                            <li>Railroad uncuffed ETT = <span class="dose-paeds">(Age÷4)+4</span>. Age-appropriate size.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" style="margin-top:3mm;">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">VENTILATE &amp; CONFIRM — BOTH PATHS</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Connect BVM. CONFIRM EtCO2 (gold standard). Suction trachea.</li>
+                    <li>Secure tube (tube tie — not tape alone). Call ENT — formal tracheostomy or repair in theatre.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="plan-b-box">
+            <div class="plan-b-title">⚠️ No EtCO2 after ETT placement</div>
+            Likely oesophageal or paratracheal placement. WITHDRAW. Re-oxygenate with BVM face mask. Retry with fresh bougie. In small children: consider blind O2 via open tracheal incision (attach BVM to syringe barrel) while retrying.
+        </div>
+
+        <div class="stop-box">
+            After CICO event: ICU admission. ENT review for formal tracheostomy/repair. Debrief team. Document clearly in notes.
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://das.uk.com/guidelines/das_intubation_guidelines/" class="ref-qr" alt="QR Code">
+            References: DAS Guidelines 2025 | EMCrit 401 — Cliff Reid Paediatric FONA (2025) | Resuscitation Council UK PALS 2025
+            <a href="https://das.uk.com/guidelines/das_intubation_guidelines/" target="_blank" class="ref-link-text">Open DAS Guidelines 2025</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--paeds-primary);"><span>DAS GUIDELINES 2025</span></div>
+</div>
+
+<!-- ===== PAGES 28-29: DC CARDIOVERSION ===== -->
+<div class="page">
+    <div class="side-strip" style="background: var(--purple-bg);"><span>CARDIAC EMERGENCY</span></div>
+    <div class="content-area wt-layout">
+        <div class="main-header" style="background-color: var(--purple-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>DC Cardioversion</h1>
+            <h2>Page 1: Walkthrough (Preparation) — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="paeds-badge">🩺 PAEDIATRIC EDITION</div>
+        </div>
+        <div class="wt-grid">
+            <div class="wt-col">
+                <div class="wt-box">
+                    <div class="wt-box-header">Indications &amp; Initial Actions</div>
+                    <div class="wt-box-content">
+                        <strong>SYNCHRONISED (CARDIOVERSION):</strong><br>
+                        • Haemodynamically unstable SVT (HR typically &gt;220 bpm in infants, &gt;180 bpm in children)<br>
+                        • Haemodynamically unstable AF/flutter<br>
+                        • Ventricular tachycardia with pulse<br><br>
+                        <strong>UNSYNCHRONISED (DEFIBRILLATION):</strong><br>
+                        • VF or pulseless VT — PALS algorithm<br><br>
+                        <strong>Before cardioversion — try first if STABLE:</strong><br>
+                        • <strong>Vagal manoeuvres:</strong> Ice to face &lt;1yr (10 sec) | Valsalva &gt;5yrs (blow through narrow straw) | One-handed carotid massage in older child<br>
+                        • <strong>Adenosine:</strong> <span class="dose-paeds">0.1 mg/kg</span> IV rapid push + 10ml saline flush (max first dose 6mg). Repeat <span class="dose-paeds">0.2 mg/kg</span> if no response (max 12mg). Use LARGE proximal vein.<br>
+                        • If adenosine fails OR haemodynamically unstable → DC cardioversion<br><br>
+                        <strong>Call 2222:</strong> Anaesthetics + Paediatric Reg. Sedation mandatory if conscious.
+                    </div>
+                </div>
+
+                <div class="wt-box">
+                    <div class="wt-box-header">Paediatric Energy &amp; Pad Guide</div>
+                    <div class="wt-box-content">
+                        <div style="background:#f3e5f5; border-left: 4px solid var(--purple-bg); padding: 7px; border-radius:3px; font-size:8.5pt; margin-bottom:6px;">
+                            <strong style="color:var(--purple-bg); font-size:9pt;">SYNCHRONISED CARDIOVERSION:</strong><br>
+                            • First shock: <span class="dose">0.5–1 J/kg</span> (biphasic)<br>
+                            • Second shock: <span class="dose">2 J/kg</span> (biphasic)<br>
+                            • Maximum: <span class="dose">2 J/kg</span> per shock
+                        </div>
+                        <div style="background:#ffebee; border-left: 4px solid var(--red-bg); padding: 7px; border-radius:3px; font-size:8.5pt;">
+                            <strong style="color:var(--red-bg); font-size:9pt;">DEFIBRILLATION (VF/pVT — unsynchronised):</strong><br>
+                            • <span class="dose">4 J/kg</span> every shock — PALS algorithm
+                        </div>
+                        <div style="margin-top:7px; font-size:8.5pt;">
+                            <strong>PAD SIZE:</strong><br>
+                            • <strong>&lt;10 kg</strong> (approx &lt;1yr): Paediatric paddles/pads<br>
+                            • <strong>&gt;10 kg</strong>: Adult pads acceptable<br><br>
+                            <strong>PAD PLACEMENT:</strong><br>
+                            • Anterior-posterior <strong>preferred</strong> in small children (avoids pad overlap)<br>
+                            • Anterior-lateral acceptable if AP not feasible
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 4px solid var(--purple-bg);">
+                    <div class="wt-box-header">Sedation for Cardioversion</div>
+                    <div class="wt-box-content" style="font-size:8.5pt;">
+                        <strong style="color:#b71c1c;">Mandatory if patient is conscious.</strong><br><br>
+                        <strong>First line:</strong> Ketamine <span class="dose-paeds">1–2 mg/kg</span> IV slow push (dissociative, maintains airway)<br>
+                        <strong>Alternative:</strong> Midazolam <span class="dose-paeds">0.1 mg/kg</span> IV + Fentanyl <span class="dose-paeds">1–2 mcg/kg</span> IV<br><br>
+                        Have: BVM + suction + intubation equipment immediately available.<br>
+                        Monitoring: SpO2, EtCO2 (if intubated), ECG, NIBP throughout.
+                        <div class="paeds-tip" style="margin-top:5px;">🩺 In haemodynamic collapse — do NOT delay cardioversion for sedation. Cardiovert immediately, then manage pain/distress.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wt-col">
+                <div class="wt-box" style="border-top: 4px solid var(--purple-bg);">
+                    <div class="wt-box-header">Procedure Walkthrough</div>
+                    <div class="wt-box-content">
+                        <ol class="step-list">
+                            <li><strong>Vagal / Adenosine first</strong> if haemodynamically stable (see indications box).</li>
+                            <li><strong>Monitoring:</strong> Continuous ECG, SpO2, NIBP. 12-lead ECG if time allows.</li>
+                            <li><strong>IV/IO access:</strong> Large proximal vein. IO acceptable.</li>
+                            <li><strong>Sedation:</strong> Ketamine 1–2 mg/kg IV if conscious. <span class="drug-badge">Give Now</span></li>
+                            <li><strong>Pads:</strong> Apply combo pads — &lt;10kg = paediatric; &gt;10kg = adult. Anterior-posterior preferred.</li>
+                            <li><strong>Sync Mode:</strong> CONFIRM SYNCHRONISED mode is ON (look for sync markers on QRS on ECG trace). Cardioversion only.</li>
+                            <li><strong>Charge:</strong> 0.5–1 J/kg. Announce: <em>"Charging — stand clear."</em></li>
+                            <li><strong>Clear:</strong> Confirm all staff away. Oxygen away from patient face.</li>
+                            <li><strong>Shock:</strong> Deliver. Assess rhythm immediately after.</li>
+                            <li><strong>If no response:</strong> Increase to 2 J/kg. Repeat up to 3 times. Seek senior/cardiology input.</li>
+                            <li><strong>Post-ROSR:</strong> 12-lead ECG. IV amiodarone if recurrent VT: <span class="dose-paeds">5 mg/kg</span> over 30 mins. Transfer to PICU.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="wt-box" style="border-top: 4px solid var(--purple-bg);">
+                    <div class="wt-box-header">Paediatric SVT — Quick Reference</div>
+                    <div class="wt-box-content" style="font-size:8.5pt;">
+                        <strong>Typical HR:</strong> Infants &gt;220 bpm | Children &gt;180 bpm<br>
+                        <strong>ECG:</strong> Narrow complex tachycardia, no P-waves (or retrograde P), abrupt onset/offset<br><br>
+                        <strong>Stable SVT pathway:</strong><br>
+                        1. Vagal manoeuvre (ice face / Valsalva)<br>
+                        2. Adenosine 0.1 mg/kg IV rapid push (max 6mg)<br>
+                        3. Adenosine 0.2 mg/kg if no response (max 12mg)<br>
+                        4. Synchronised DC cardioversion 0.5–1 J/kg if above fail<br><br>
+                        <strong>Unstable SVT (shock/collapse):</strong><br>
+                        → Synchronised DC cardioversion immediately 0.5–1 J/kg<br>
+                        <div class="pro-tip">Do NOT give adenosine to haemodynamically compromised patients — may precipitate cardiac arrest.</div>
+                    </div>
+                </div>
+
+                <div class="storage-box">
+                    <div class="storage-header">📍 EQUIPMENT LOCATION</div>
+                    <div class="storage-text">DEFIBRILLATOR IN RESUS BAY. PAEDIATRIC PADS IN PAEDIATRIC RESUS.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE 29: DC CARDIOVERSION FLOWCHART -->
+<div class="page">
+    <div class="content-area theme-purple">
+        <div class="main-header" style="background-color: var(--purple-bg);">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>DC Cardioversion</h1>
+            <h2>Page 2: Action Flowchart — PAEDIATRIC (&lt;16 YRS)</h2>
+            <div class="paeds-badge">🩺 PAEDIATRIC EDITION</div>
+        </div>
+
+        <div class="section step-warning">
+            <div class="section-content">
+                <ul>
+                    <li><strong>SYNC ON</strong> for all cardioversion (non-arrest). <strong>SYNC OFF</strong> for defibrillation (VF/pVT).</li>
+                    <li>Pads: <strong>&lt;10 kg = paediatric pads.</strong> &gt;10 kg = adult pads acceptable.</li>
+                    <li><strong>Sedate before shocking if conscious</strong> — Ketamine 1–2 mg/kg IV.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">1</div><div class="section-title">STABLE SVT — TRY FIRST</div></div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Vagal manoeuvres:</strong> Ice to face &lt;1yr (10 sec) | Valsalva &gt;5yrs (blow through straw)</li>
+                    <li><strong>Adenosine:</strong> <span class="dose-paeds">0.1 mg/kg</span> IV rapid push + 10ml saline flush (max 6mg first dose). Large proximal vein. <span class="drug-badge">Give Fast</span></li>
+                    <li>Repeat: <span class="dose-paeds">0.2 mg/kg</span> if no response (max 12mg).</li>
+                    <li><span class="pro-tip">Do NOT give adenosine if haemodynamically compromised — go straight to cardioversion.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">2</div><div class="section-title">SEDATE &amp; PREPARE</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Ketamine <span class="dose-paeds">1–2 mg/kg</span> IV slow push (if conscious). <span class="drug-badge">Give Now</span></li>
+                    <li>Apply combo pads: &lt;10kg = paediatric; &gt;10kg = adult. Anterior-posterior preferred.</li>
+                    <li><strong>CONFIRM SYNC MODE ON</strong> — look for sync markers on QRS complexes on ECG display.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">3</div><div class="section-title">SHOCK — SYNCHRONISED CARDIOVERSION</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>Set energy: <span class="dose">0.5–1 J/kg</span> (biphasic).</li>
+                    <li>Charge. Announce: <em>"Stand clear — oxygen away."</em></li>
+                    <li>Confirm all clear. Deliver shock.</li>
+                    <li>Assess rhythm immediately. If no response → <span class="dose">2 J/kg</span>. Repeat up to 3 attempts.</li>
+                    <li><span class="paeds-tip">🩺 After each shock — reconfirm SYNC mode is still ON (some monitors reset to async after shock).</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section step-critical">
+            <div class="section-header"><div class="icon-box">4</div><div class="section-title">DEFIBRILLATION — VF / pVT (UNSYNCHRONISED)</div></div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Confirm SYNC MODE OFF.</strong> VF/pVT = unsynchronised shock.</li>
+                    <li>Energy: <span class="dose">4 J/kg</span> every shock — PALS algorithm.</li>
+                    <li>Immediately resume CPR after shock. 2 min cycle before rhythm check.</li>
+                    <li><span class="pro-tip">Same energy for all subsequent defibrillation shocks: 4 J/kg.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header"><div class="icon-box">5</div><div class="section-title">POST-CARDIOVERSION</div></div>
+            <div class="section-content">
+                <ul>
+                    <li>12-lead ECG immediately.</li>
+                    <li>Recurrent/refractory VT: Amiodarone <span class="dose-paeds">5 mg/kg</span> IV over 30 mins. <span class="drug-badge">Fetch Drug</span></li>
+                    <li>Recurrent SVT: Discuss with Paediatric Cardiology — consider adenosine repeat or digoxin.</li>
+                    <li>Transfer to PICU. Continuous cardiac monitoring.</li>
+                </ul>
+                <div class="plan-b-box">
+                    <div class="plan-b-title">⚠️ No response after 3 shocks</div>
+                    Call Paediatric Cardiology urgently. Consider: correct paddle position, adequate contact, sync mode status, underlying reversible cause (electrolytes, hypoxia). Magnesium <span class="dose-paeds">25–50 mg/kg</span> IV (max 2g) for torsades de pointes.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/paediatric-basic-life-support-guidelines" class="ref-qr" alt="QR Code">
+            Reference: Resuscitation Council UK PALS 2025 | RCPCH | Advanced Paediatric Life Support 6th Ed.
+            <a href="https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/paediatric-basic-life-support-guidelines" target="_blank" class="ref-link-text">Open RCUK PALS Guidelines</a>
+        </div>
+    </div>
+    <div class="side-strip" style="background: var(--purple-bg);"><span>CARDIAC EMERGENCY</span></div>
+</div>
+
+<!-- ===== PAGE 30: HOT DEBRIEF ===== -->
+<div class="page debrief-page">
+    <img src="images/wmebem_logo.png" class="tp-logo" alt="Logo" style="margin-bottom: 8mm; width: 90px;">
+    <div class="debrief-card">
+        <h1 style="color: var(--paeds-primary); text-align: center; text-transform: uppercase; font-weight: 900; margin-bottom: 8px; font-size: 20pt;">STOP 5 Hot Debrief</h1>
+        <p style="text-align: center; color: #555; margin-bottom: 20px; font-size: 10pt;">Perform immediately after the event, before the team disperses. 5 minutes maximum.</p>
+
+        <div style="font-size: 13pt; line-height: 1.9; color: #333;">
+            <strong>1. S</strong>ummarise the case (1 minute).<br>
+            <strong>2. T</strong>hings that went well?<br>
+            <strong>3. O</strong>pportunities to improve?<br>
+            <strong>4. P</strong>oints for action (Fix equipment, report incidents).<br>
+            <strong>5. 5</strong> minutes max — then check on each other.
+        </div>
+
+        <div style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 6px; border-left: 5px solid var(--paeds-primary); font-size: 9.5pt; color: #0d47a1;">
+            <strong>🩺 Paediatric-Specific Debrief Questions:</strong><br>
+            • Was age-appropriate equipment used (ETT size, pacing pads, drain size)?<br>
+            • Was weight estimated correctly (Broselow tape / formula)?<br>
+            • Were age-appropriate drug doses used (weight-based)?<br>
+            • Was IO access available and used appropriately?<br>
+            • Was the correct surgical airway technique used for the patient's age (eFONA ≥8 yrs / Tracheotomy &lt;8 yrs)?<br>
+            • Was the Paediatric Registrar involved?<br>
+            • Was DATIX / incident report completed?
+        </div>
+
+        <div style="margin-top: 15px; padding-top: 15px; border-top: 2px dashed #ccc; text-align: center; color: #777; font-size: 9.5pt;">
+            Is everyone okay? Does anyone need support right now?<br>
+            <em>Check on your colleagues — high acuity paediatric events are extremely distressing.</em><br><br>
+            <span style="font-size: 8.5pt; color: #aaa;">Escalate to Consultant within 24 hours. Complete team debrief within 48 hours.</span>
+        </div>
+    </div>
+    <div style="margin-top: 8mm; font-size: 8pt; color: #888; text-align:center;">
+        WMEBEM Paediatric HALO QRH v1.0 (May 2026) | jake.turner@uhb.nhs.uk<br>
+        RCOG GTG-56 (Dec 2024) | RCUK 2025 | RCPCH | DAS 2025 | Resuscitation Council UK PALS 2025
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.checklist-item').forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+            const box = item.querySelector('.checkbox');
+            if (box) box.classList.toggle('checked');
+        });
+    });
+</script>
+</body>
+</html>
