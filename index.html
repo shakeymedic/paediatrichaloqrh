@@ -621,68 +621,188 @@
 <!-- ===== PAGE 3: CONTENTS ===== -->
 <div class="page contents-page">
     <div class="gp-header" style="font-size: 20pt; margin-bottom: 3mm;">Contents — Paediatric HALO QRH</div>
-    <div style="font-size: 8.5pt; margin-bottom: 5mm; color: #555;">🩺 = Paediatric-specific modification</div>
+    <div style="font-size: 8.5pt; margin-bottom: 4mm; color: #555;">🩺 = Paediatric-specific modification</div>
 
-    <div class="toc-grid">
-        <div class="toc-column">
-            <div class="toc-group">
-                <div class="toc-header" style="background: var(--pink-bg);">Obstetric Emergency</div>
-                <ul class="toc-list">
-                    <li class="toc-item"><span>Resuscitative Hysterotomy</span> <span>Pg 4–5</span></li>
-                    <li class="toc-item"><span>Emergency Breech Delivery</span> <span>Pg 6–7</span></li>
-                </ul>
-            </div>
-            <div class="toc-group">
-                <div class="toc-header" style="background: var(--red-bg);">Trauma / Critical</div>
-                <ul class="toc-list">
-                    <li class="toc-item"><span>Resuscitative Thoracotomy</span> <span>Pg 8–9</span></li>
-                    <li class="toc-item"><span>Escharotomy (Burns)</span> <span>Pg 10–11</span></li>
-                </ul>
-            </div>
-            <div class="toc-group">
-                <div class="toc-header" style="background: var(--paeds-primary);">Thoracic</div>
-                <ul class="toc-list">
-                    <li class="toc-item"><span>Chest Drain (Open)</span> <span>Pg 12–13</span></li>
-                </ul>
+    <!-- TOC + WETFLAG side by side -->
+    <div style="display:flex; flex-direction:row; gap:6mm; flex-grow:1;">
+
+        <!-- LEFT: TOC columns -->
+        <div style="flex:1; display:flex; flex-direction:column; gap:0;">
+            <div class="toc-grid" style="flex-grow:1;">
+                <div class="toc-column">
+                    <div class="toc-group">
+                        <div class="toc-header" style="background: var(--pink-bg);">Obstetric Emergency</div>
+                        <ul class="toc-list">
+                            <li class="toc-item"><span>Resuscitative Hysterotomy</span> <span>Pg 4–5</span></li>
+                            <li class="toc-item"><span>Emergency Breech Delivery</span> <span>Pg 6–7</span></li>
+                        </ul>
+                    </div>
+                    <div class="toc-group">
+                        <div class="toc-header" style="background: var(--red-bg);">Trauma / Critical</div>
+                        <ul class="toc-list">
+                            <li class="toc-item"><span>Resuscitative Thoracotomy</span> <span>Pg 8–9</span></li>
+                            <li class="toc-item"><span>Escharotomy (Burns)</span> <span>Pg 10–11</span></li>
+                        </ul>
+                    </div>
+                    <div class="toc-group">
+                        <div class="toc-header" style="background: var(--paeds-primary);">Thoracic</div>
+                        <ul class="toc-list">
+                            <li class="toc-item"><span>Chest Drain (Open)</span> <span>Pg 12–13</span></li>
+                        </ul>
+                    </div>
+                    <div class="toc-group">
+                        <div class="toc-header" style="background: var(--purple-bg);">Cardiac / Vascular</div>
+                        <ul class="toc-list">
+                            <li class="toc-item"><span>Pericardiocentesis</span> <span>Pg 14–15</span></li>
+                            <li class="toc-item"><span>External Pacing</span> <span>Pg 16–17</span></li>
+                            <li class="toc-item"><span>Subclavian Central Line</span> <span>Pg 18–19</span></li>
+                        </ul>
+                    </div>
+                    <div class="toc-group">
+                        <div class="toc-header" style="background: var(--orange-bg);">Specialist</div>
+                        <ul class="toc-list">
+                            <li class="toc-item"><span>Lateral Canthotomy</span> <span>Pg 20–21</span></li>
+                            <li class="toc-item"><span>Severe Max-Fax Bleed</span> <span>Pg 22–23</span></li>
+                        </ul>
+                    </div>
+                    <div class="toc-group">
+                        <div class="toc-header" style="background: #b8860b;">Toxicology</div>
+                        <ul class="toc-list">
+                            <li class="toc-item"><span>LAST (Lipid Rescue)</span> <span>Pg 24–25</span></li>
+                        </ul>
+                    </div>
+                    <div class="toc-group">
+                        <div class="toc-header" style="background: var(--paeds-primary);">Airway Rescue / Reference</div>
+                        <ul class="toc-list">
+                            <li class="toc-item"><span>Surgical Airway (eFONA/Tracheotomy)</span> <span>Pg 26–27</span></li>
+                            <li class="toc-item"><span>DC Cardioversion</span> <span>Pg 28–29</span></li>
+                            <li class="toc-item"><span>WETFLAG Reference</span> <span>Pg 30</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="toc-column">
-            <div class="toc-group">
-                <div class="toc-header" style="background: var(--purple-bg);">Cardiac / Vascular</div>
-                <ul class="toc-list">
-                    <li class="toc-item"><span>Pericardiocentesis</span> <span>Pg 14–15</span></li>
-                    <li class="toc-item"><span>External Pacing</span> <span>Pg 16–17</span></li>
-                    <li class="toc-item"><span>Subclavian Central Line</span> <span>Pg 18–19</span></li>
-                </ul>
+        <!-- RIGHT: WETFLAG mini-table -->
+        <div style="width:88mm; flex-shrink:0; display:flex; flex-direction:column; gap:2mm;">
+            <div style="background:#37474f; color:white; padding:6px 10px; border-radius:4px 4px 0 0; font-weight:900; font-size:11pt; text-align:center; letter-spacing:1px;">
+                WETFLAG
             </div>
-            <div class="toc-group">
-                <div class="toc-header" style="background: var(--orange-bg);">Specialist</div>
-                <ul class="toc-list">
-                    <li class="toc-item"><span>Lateral Canthotomy</span> <span>Pg 20–21</span></li>
-                    <li class="toc-item"><span>Severe Max-Fax Bleed</span> <span>Pg 22–23</span></li>
-                </ul>
+            <div style="background:#546e7a; color:#cfd8dc; font-size:8pt; padding:3px 8px; text-align:center; font-weight:600; margin-top:-2mm;">
+                Weight · Energy · Tube · Fluids · Lorazepam · Adrenaline · Glucose
             </div>
-            <div class="toc-group">
-                <div class="toc-header" style="background: #b8860b;">Toxicology</div>
-                <ul class="toc-list">
-                    <li class="toc-item"><span>LAST (Lipid Rescue)</span> <span>Pg 24–25</span></li>
-                </ul>
+
+            <!-- Weight -->
+            <div style="background:#e3f2fd; border-left:5px solid #1565c0; border-radius:3px; padding:5px 8px; font-size:8.5pt;">
+                <span style="font-weight:900; color:#1565c0; font-size:10pt;">W</span>
+                <span style="font-weight:800; color:#333;"> Weight</span><br>
+                <span style="font-family:monospace; font-size:8.5pt; color:#333;">
+                    &lt;1yr: (0.5×months)+4<br>
+                    1–5yr: (2×age)+8<br>
+                    &gt;5yr: (3×age)+7 kg
+                </span>
             </div>
-            <div class="toc-group">
-                <div class="toc-header" style="background: var(--paeds-primary);">Airway Rescue</div>
-                <ul class="toc-list">
-                    <li class="toc-item"><span>Surgical Airway (eFONA/Tracheotomy)</span> <span>Pg 26–27</span></li>
-                    <li class="toc-item"><span>DC Cardioversion</span> <span>Pg 28–29</span></li>
-                    <li class="toc-item"><span>WETFLAG Reference</span> <span>Pg 30</span></li>
-                </ul>
+
+            <!-- Energy -->
+            <div style="background:#ffebee; border-left:5px solid #b71c1c; border-radius:3px; padding:5px 8px; font-size:8.5pt;">
+                <span style="font-weight:900; color:#b71c1c; font-size:10pt;">E</span>
+                <span style="font-weight:800; color:#333;"> Energy (defibrillation)</span><br>
+                <span style="font-family:monospace; font-size:9.5pt; font-weight:900; color:#b71c1c;">4 J/kg</span>
+                <span style="font-size:8pt; color:#555;"> all shocks &nbsp;|&nbsp; refractory VF: up to 8 J/kg</span>
+            </div>
+
+            <!-- Tube -->
+            <div style="background:#f3e5f5; border-left:5px solid #6a1b9a; border-radius:3px; padding:5px 8px; font-size:8.5pt;">
+                <span style="font-weight:900; color:#6a1b9a; font-size:10pt;">T</span>
+                <span style="font-weight:800; color:#333;"> Tube (ETT)</span><br>
+                <span style="font-family:monospace; font-size:8.5pt; color:#333;">
+                    Uncuffed: (Age÷4)+4 mm<br>
+                    Cuffed: (Age÷4)+3.5 mm<br>
+                    Oral depth: (Age÷2)+12 cm
+                </span>
+            </div>
+
+            <!-- Fluids -->
+            <div style="background:#e8f5e9; border-left:5px solid #2e7d32; border-radius:3px; padding:5px 8px; font-size:8.5pt;">
+                <span style="font-weight:900; color:#2e7d32; font-size:10pt;">F</span>
+                <span style="font-weight:800; color:#333;"> Fluids</span><br>
+                <span style="font-family:monospace; font-size:9.5pt; font-weight:900; color:#2e7d32;">20 ml/kg</span>
+                <span style="font-size:8pt; color:#555;"> medical &nbsp;|&nbsp;</span>
+                <span style="font-family:monospace; font-size:9.5pt; font-weight:900; color:#2e7d32;">10 ml/kg</span>
+                <span style="font-size:8pt; color:#555;"> trauma</span><br>
+                <span style="font-size:8pt; color:#555;">Hartmann's / Plasmalyte. Reassess after each bolus.</span>
+            </div>
+
+            <!-- Lorazepam -->
+            <div style="background:#fff8e1; border-left:5px solid #f57f17; border-radius:3px; padding:5px 8px; font-size:8.5pt;">
+                <span style="font-weight:900; color:#e65100; font-size:10pt;">L</span>
+                <span style="font-weight:800; color:#333;"> Lorazepam</span><br>
+                <span style="font-family:monospace; font-size:9.5pt; font-weight:900; color:#e65100;">0.1 mg/kg</span>
+                <span style="font-size:8pt; color:#555;"> IV/IO &nbsp;|&nbsp; max 4 mg per dose</span>
+            </div>
+
+            <!-- Adrenaline -->
+            <div style="background:#ffebee; border-left:5px solid #b71c1c; border-radius:3px; padding:5px 8px; font-size:8.5pt;">
+                <span style="font-weight:900; color:#b71c1c; font-size:10pt;">A</span>
+                <span style="font-weight:800; color:#333;"> Adrenaline (arrest)</span><br>
+                <span style="font-family:monospace; font-size:9.5pt; font-weight:900; color:#b71c1c;">0.1 ml/kg of 1:10,000</span><br>
+                <span style="font-size:8pt; color:#555;">= 10 mcg/kg &nbsp;|&nbsp; IV/IO &nbsp;|&nbsp; every 3–5 mins</span>
+            </div>
+
+            <!-- Glucose -->
+            <div style="background:#e8f5e9; border-left:5px solid #1b5e20; border-radius:3px; padding:5px 8px; font-size:8.5pt;">
+                <span style="font-weight:900; color:#1b5e20; font-size:10pt;">G</span>
+                <span style="font-weight:800; color:#333;"> Glucose (hypoglycaemia)</span><br>
+                <span style="font-family:monospace; font-size:9.5pt; font-weight:900; color:#1b5e20;">2 ml/kg of 10% dextrose</span><br>
+                <span style="font-size:8pt; color:#555;">IV/IO over 5 mins. Recheck BM at 15 mins.</span>
+            </div>
+
+            <!-- Amiodarone quick ref -->
+            <div style="background:#ffebee; border:1px solid #c62828; border-radius:3px; padding:4px 8px; font-size:8pt; color:#b71c1c;">
+                <strong>Amiodarone:</strong> 5 mg/kg IV/IO after 3rd shock (max 300mg) &nbsp;|&nbsp; <strong>Atropine:</strong> 20 mcg/kg (min 100mcg, max 600mcg) &nbsp;→ See Pg 30 for full WETFLAG reference
             </div>
         </div>
     </div>
 
-    <div style="background: #e3f2fd; border: 2px solid var(--paeds-primary); border-radius: 6px; padding: 8px 12px; margin-top: 5mm; font-size: 8pt; color: #1565c0;">
-        <strong>KEY PAEDIATRIC DIFFERENCES:</strong>
-        ETT size = (Age÷4)+3.5 (cuffed) or (Age÷4)+4 (uncuffed) | Weight estimate: &lt;1yr=(0.5×months)+4, 1-5yr=(2×age)+8, &gt;5yr=(3×age)+7 | Chest drain size = 4×ETT size (French) | IO access preferred over subclavian in arrest | FONA: ≥8yrs = scalpel eFONA 6.0 cuffed | &lt;8yrs = surgical tracheotomy (Shiley 3.5 neo) | Needles = bridge only | Paeds pacing pads &lt;10kg
+    <!-- KEY PAEDIATRIC DIFFERENCES — redesigned -->
+    <div style="margin-top:4mm; background:#37474f; border-radius:5px; overflow:hidden;">
+        <div style="background:#263238; color:white; padding:5px 12px; font-weight:900; font-size:10pt; text-transform:uppercase; letter-spacing:1px;">
+            ⚠️ Key Paediatric Differences at a Glance
+        </div>
+        <div style="display:flex; flex-direction:row; gap:0;">
+            <div style="flex:1; padding:6px 10px; font-size:8.5pt; color:white; border-right:1px solid #455a64;">
+                <strong style="color:#80cbc4;">Airway</strong><br>
+                ETT cuffed: (Age÷4)+3.5<br>
+                ETT uncuffed: (Age÷4)+4<br>
+                eFONA ≥8yrs: scalpel, 6.0 cuffed<br>
+                &lt;8yrs: surgical tracheotomy<br>
+                Shiley 3.5 neo / 4.5 paed
+            </div>
+            <div style="flex:1; padding:6px 10px; font-size:8.5pt; color:white; border-right:1px solid #455a64;">
+                <strong style="color:#80cbc4;">Chest Drain</strong><br>
+                Size (Fr) = 4 × ETT size<br>
+                No trochar in any child<br>
+                Needle decompression: 14–16G<br><br>
+                <strong style="color:#80cbc4;">Central Line</strong><br>
+                IO preferred in arrest
+            </div>
+            <div style="flex:1; padding:6px 10px; font-size:8.5pt; color:white; border-right:1px solid #455a64;">
+                <strong style="color:#80cbc4;">Pacing</strong><br>
+                Rate: 80–100 bpm<br>
+                Pads &lt;10kg: paediatric<br><br>
+                <strong style="color:#80cbc4;">Cardioversion</strong><br>
+                Sync: 0.5–1 J/kg → 2 J/kg<br>
+                Defib: 4 J/kg
+            </div>
+            <div style="flex:1; padding:6px 10px; font-size:8.5pt; color:white;">
+                <strong style="color:#80cbc4;">Trauma / Transfer</strong><br>
+                MTC: Birmingham Children's<br>
+                Activate WMAS/MERIT early<br>
+                KIDS retrieval team<br><br>
+                <strong style="color:#80cbc4;">Burns</strong><br>
+                Resus threshold: ≥10% TBSA
+            </div>
+        </div>
     </div>
 </div>
 
