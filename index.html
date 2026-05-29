@@ -188,8 +188,8 @@
         .wt-grid { display: flex; flex-direction: row; gap: 5mm; flex-grow: 1; margin-bottom: 0; width: 100%; }
         .wt-col { display: flex; flex-direction: column; gap: 3.5mm; flex: 1; width: calc(50% - 2.5mm); }
         .wt-box { border: 1px solid #ccc; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05); page-break-inside: avoid; }
-        .wt-box-header { background: #eee; color: #333; padding: 5px 10px; font-weight: 800; font-size: 9pt; border-bottom: 1px solid #ccc; text-transform: uppercase; letter-spacing: 0.5px; }
-        .wt-box-content { padding: 8px; font-size: 8pt; line-height: 1.35; flex-grow: 1; color: #222; }
+        .wt-box-header { background: #eee; color: #333; padding: 6px 10px; font-weight: 800; font-size: 10pt; border-bottom: 1px solid #ccc; text-transform: uppercase; letter-spacing: 0.5px; }
+        .wt-box-content { padding: 9px; font-size: 9pt; line-height: 1.45; flex-grow: 1; color: #222; }
 
         /* Checklists */
         .checklist-item { display: flex; align-items: flex-start; margin-bottom: 4px; font-weight: 500; border-bottom: 1px dashed #eee; padding-bottom: 3px; page-break-inside: avoid; }
@@ -200,7 +200,7 @@
 
         /* Numbered Lists */
         .step-list { counter-reset: step; list-style: none; padding: 0; margin: 0; }
-        .step-list li { position: relative; padding-left: 20px; margin-bottom: 6px; font-size: 8.5pt; }
+        .step-list li { position: relative; padding-left: 22px; margin-bottom: 7px; font-size: 9.5pt; }
         .step-list li::before { counter-increment: step; content: counter(step) ". "; font-weight: 900; color: var(--paeds-primary); position: absolute; left: 0; top: 0; min-width: 16px; text-align: right; }
 
         /* --- DIAGRAMS --- */
@@ -543,7 +543,7 @@
     <div style="margin: 8mm 0 4mm 0;">
         <div class="tp-edition">2026 PAEDIATRIC EDITION</div>
     </div>
-    <div class="tp-version">Version 1.0 (May 2026)</div>
+    <div class="tp-version">Version 1.2 (May 2026)</div>
     <div style="margin-top:auto; font-size: 9pt; color: #555; text-align: center; line-height: 1.5;">
         Verified against RCOG GTG-56 (Dec 2024), Resuscitation Council UK (2025 Guidelines),<br>RCPCH, DAS 2025
     </div>
@@ -674,6 +674,7 @@
                 <ul class="toc-list">
                     <li class="toc-item"><span>Surgical Airway (eFONA/Tracheotomy)</span> <span>Pg 26–27</span></li>
                     <li class="toc-item"><span>DC Cardioversion</span> <span>Pg 28–29</span></li>
+                    <li class="toc-item"><span>WETFLAG Reference</span> <span>Pg 30</span></li>
                 </ul>
             </div>
         </div>
@@ -1048,7 +1049,7 @@
                     <div class="wt-box-header">Initial Actions &amp; Indications</div>
                     <div class="wt-box-content">
                         • Call <strong>2222</strong> "Trauma Cardiac Arrest". Activate Major Haemorrhage Protocol. Request O-neg blood.<br>
-                        • Consider WMAS/HEMS — patient will need transfer to MTC (QE Birmingham).<br><br>
+                        • Activate <strong>WMAS/MERIT</strong> immediately — patient will need transfer to <strong>Birmingham Children's Hospital (MTC)</strong>. Request <strong>KIDS retrieval team</strong> if time allows.<br><br>
                         <strong>PAEDIATRIC INDICATIONS (tighter than adult):</strong><br>
                         • <strong>PENETRATING</strong> thoracic/epigastric: Arrest &lt;15 mins + signs of life (pupil response, gasping, ECG activity, cardiac motion on US)<br>
                         • <strong>BLUNT trauma:</strong> Witnessed loss of cardiac output in ED only<br>
@@ -1108,7 +1109,7 @@
                 <div class="wt-box" style="border-top: 3px solid var(--red-bg);">
                     <div class="wt-box-header">Post-Procedure Plan</div>
                     <div class="wt-box-content">
-                        If ROSC: Close chest with large dressings. Immediate Transfer to Cardiothoracics / MTC. Sedate and paralyse. Maintain aortic clamp during transfer if clamped.
+                        If ROSC: Close chest with large dressings. Sedate and paralyse. Immediate transfer: <strong>Birmingham Children's Hospital (MTC)</strong> via WMAS/MERIT. Maintain aortic clamp during transfer if clamped.
                     </div>
                 </div>
 
@@ -2606,7 +2607,7 @@
                 <!-- Equipment -->
                 <div class="wt-box">
                     <div class="wt-box-header">Equipment — All Techniques</div>
-                    <div class="wt-box-content" style="font-size:8pt;">
+                    <div class="wt-box-content" style="font-size:9pt;">
                         <div class="checklist-item"><div class="checkbox"></div> <strong>Scalpel Size 10</strong> (all ages)</div>
                         <div class="checklist-item"><div class="checkbox"></div> Sharp-pointed scissors (curved) or Tuff Cut</div>
                         <div class="checklist-item"><div class="checkbox"></div> 2× Kelly/artery clamps (retraction)</div>
@@ -2614,7 +2615,7 @@
                         <div class="checklist-item"><div class="checkbox"></div> Suction (narrow bore + Yankauer)</div>
                         <div class="checklist-item"><div class="checkbox"></div> BVM + EtCO2 + SpO2</div>
                         <div class="checklist-item"><div class="checkbox"></div> Shoulder roll</div>
-                        <div class="checklist-item"><div class="checkbox"></div> Headlight / good lighting</div>
+                        <div class="checklist-item"><div class="checkbox"></div> Good lighting essential (overhead / phone torch)</div>
                         <div style="margin-top:5px; font-size:8pt; font-weight:700; color:#1565c0;">ETT &amp; BOUGIE BY AGE:</div>
                         <div style="font-size:7.5pt; background:#e3f2fd; padding:5px; border-radius:3px; line-height:1.6;">
                             <strong>Neonate:</strong> 3.0 uncuffed ETT + 5Fr Portex bougie<br>
@@ -2633,7 +2634,7 @@
                 <!-- Cannula bridge -->
                 <div class="wt-box" style="border-top:3px solid #e65100;">
                     <div class="wt-box-header" style="background:#e65100; color:white;">Cannula Bridge — Any Age (Buys Time)</div>
-                    <div class="wt-box-content" style="font-size:8pt;">
+                    <div class="wt-box-content" style="font-size:9pt;">
                         <strong>Site:</strong> <em>Trachea</em> (not CTM in &lt;1yr — CTM too small/high)<br>
                         &lt;1yr: Puncture trachea below cricoid at <strong>45° caudally</strong>.<br>
                         &gt;1yr: CTM or trachea below cricoid.<br><br>
@@ -2833,7 +2834,7 @@
 
                 <div class="wt-box" style="border-top: 4px solid var(--purple-bg);">
                     <div class="wt-box-header">Sedation for Cardioversion</div>
-                    <div class="wt-box-content" style="font-size:8.5pt;">
+                    <div class="wt-box-content" style="font-size:9pt;">
                         <strong style="color:#b71c1c;">Mandatory if patient is conscious.</strong><br><br>
                         <strong>First line:</strong> Ketamine <span class="dose-paeds">1–2 mg/kg</span> IV slow push (dissociative, maintains airway)<br>
                         <strong>Alternative:</strong> Midazolam <span class="dose-paeds">0.1 mg/kg</span> IV + Fentanyl <span class="dose-paeds">1–2 mcg/kg</span> IV<br><br>
@@ -2866,7 +2867,7 @@
 
                 <div class="wt-box" style="border-top: 4px solid var(--purple-bg);">
                     <div class="wt-box-header">Paediatric SVT — Quick Reference</div>
-                    <div class="wt-box-content" style="font-size:8.5pt;">
+                    <div class="wt-box-content" style="font-size:9pt;">
                         <strong>Typical HR:</strong> Infants &gt;220 bpm | Children &gt;180 bpm<br>
                         <strong>ECG:</strong> Narrow complex tachycardia, no P-waves (or retrograde P), abrupt onset/offset<br><br>
                         <strong>Stable SVT pathway:</strong><br>
@@ -2984,7 +2985,138 @@
     <div class="side-strip" style="background: var(--purple-bg);"><span>CARDIAC EMERGENCY</span></div>
 </div>
 
-<!-- ===== PAGE 30: HOT DEBRIEF ===== -->
+<!-- ===== PAGE 30: WETFLAG REFERENCE ===== -->
+<div class="page">
+    <div class="side-strip" style="background: #37474f;"><span>WETFLAG REFERENCE</span></div>
+    <div class="content-area">
+        <div class="main-header" style="background: #37474f;">
+            <img src="images/wmebem_logo.png" class="logo-img" alt="Logo">
+            <h1>WETFLAG — Paediatric Emergency Reference</h1>
+            <h2>Weight · Energy · Tube · Fluids · Lorazepam · Adrenaline · Glucose</h2>
+            <div class="paeds-badge">🩺 RCUK PALS 2025</div>
+        </div>
+
+        <!-- Weight estimation banner -->
+        <div style="background:#1565c0; color:white; padding:7px 12px; border-radius:4px; margin-bottom:4mm; font-size:9pt; font-weight:900; text-align:center;">
+            WEIGHT ESTIMATION (if scales unavailable) &nbsp;|&nbsp; Use Broselow tape where possible<br>
+            <span style="font-weight:700; font-size:9pt;">
+                &lt;1 yr: <span style="font-family:monospace;">(0.5 × age in months) + 4</span> &nbsp;|&nbsp;
+                1–5 yr: <span style="font-family:monospace;">(2 × age) + 8</span> &nbsp;|&nbsp;
+                &gt;5 yr: <span style="font-family:monospace;">(3 × age) + 7</span>
+            </span>
+        </div>
+
+        <!-- Main WETFLAG table -->
+        <table style="width:100%; border-collapse:collapse; font-size:9.5pt; margin-bottom:4mm;">
+            <thead>
+                <tr>
+                    <th style="background:#37474f; color:white; padding:7px 10px; text-align:left; width:5%; font-size:13pt; font-weight:900; border-right:2px solid white;">Letter</th>
+                    <th style="background:#37474f; color:white; padding:7px 10px; text-align:left; width:15%;">Parameter</th>
+                    <th style="background:#37474f; color:white; padding:7px 10px; text-align:left; width:35%;">Formula / Dose</th>
+                    <th style="background:#37474f; color:white; padding:7px 10px; text-align:left; width:45%;">Clinical Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background:#e3f2fd;">
+                    <td style="padding:8px 10px; font-size:18pt; font-weight:900; color:#1565c0; border-right:2px solid #ccc; text-align:center; vertical-align:middle;">W</td>
+                    <td style="padding:8px 10px; font-weight:800; vertical-align:middle;">Weight<br><span style="font-size:8pt; font-weight:600; color:#666;">(kg)</span></td>
+                    <td style="padding:8px 10px; font-family:monospace; font-weight:700; vertical-align:middle; font-size:9pt;">
+                        &lt;1yr: (0.5×months)+4<br>
+                        1–5yr: (2×age)+8<br>
+                        &gt;5yr: (3×age)+7
+                    </td>
+                    <td style="padding:8px 10px; font-size:8.5pt; vertical-align:middle;">Foundation for all calculations. Use measured weight or Broselow tape where available. All doses below are based on estimated weight.</td>
+                </tr>
+                <tr style="background:#fff3e0; border-top:1px solid #eee;">
+                    <td style="padding:8px 10px; font-size:18pt; font-weight:900; color:#e65100; border-right:2px solid #ccc; text-align:center; vertical-align:middle;">E</td>
+                    <td style="padding:8px 10px; font-weight:800; vertical-align:middle;">Energy<br><span style="font-size:8pt; font-weight:600; color:#666;">(defibrillation)</span></td>
+                    <td style="padding:8px 10px; font-family:monospace; font-weight:700; vertical-align:middle; font-size:9pt;">
+                        <span style="background:#ffebee; border:1px solid #d32f2f; color:#b71c1c; padding:2px 6px; border-radius:3px; font-size:10pt;">4 J/kg</span><br>
+                        <span style="font-size:8.5pt;">All shocks — initial + subsequent</span><br>
+                        <span style="font-size:8pt; color:#b71c1c;">Refractory VF/VT (&gt;5 shocks): escalate to 8 J/kg max</span>
+                    </td>
+                    <td style="padding:8px 10px; font-size:8.5pt; vertical-align:middle;">VF / pulseless VT only. Synchronised cardioversion (SVT): 0.5–1 J/kg first, 2 J/kg second. Max energy never exceeds adult setting (120–200J).</td>
+                </tr>
+                <tr style="background:#f3e5f5; border-top:1px solid #eee;">
+                    <td style="padding:8px 10px; font-size:18pt; font-weight:900; color:#6a1b9a; border-right:2px solid #ccc; text-align:center; vertical-align:middle;">T</td>
+                    <td style="padding:8px 10px; font-weight:800; vertical-align:middle;">Tube (ETT)<br><span style="font-size:8pt; font-weight:600; color:#666;">(size &amp; depth)</span></td>
+                    <td style="padding:8px 10px; font-family:monospace; font-weight:700; vertical-align:middle; font-size:9pt;">
+                        Uncuffed ID: (Age÷4)+4<br>
+                        Cuffed ID: (Age÷4)+3.5<br>
+                        Oral depth: (Age÷2)+12 cm<br>
+                        Nasal depth: (Age÷2)+15 cm
+                    </td>
+                    <td style="padding:8px 10px; font-size:8.5pt; vertical-align:middle;">Neonates: 3.0–3.5 uncuffed. Confirm position clinically + EtCO2. X-ray if time allows. Oral depth mark at lips. Cuffed tube ID is 0.5 smaller than equivalent uncuffed.</td>
+                </tr>
+                <tr style="background:#e8f5e9; border-top:1px solid #eee;">
+                    <td style="padding:8px 10px; font-size:18pt; font-weight:900; color:#2e7d32; border-right:2px solid #ccc; text-align:center; vertical-align:middle;">F</td>
+                    <td style="padding:8px 10px; font-weight:800; vertical-align:middle;">Fluids<br><span style="font-size:8pt; font-weight:600; color:#666;">(resuscitation)</span></td>
+                    <td style="padding:8px 10px; font-family:monospace; font-weight:700; vertical-align:middle; font-size:9pt;">
+                        Medical: <span style="background:#e8f5e9; border:1px solid #2e7d32; color:#1b5e20; padding:1px 5px; border-radius:3px;">20 ml/kg</span><br>
+                        Trauma: <span style="background:#e8f5e9; border:1px solid #2e7d32; color:#1b5e20; padding:1px 5px; border-radius:3px;">10 ml/kg</span>
+                    </td>
+                    <td style="padding:8px 10px; font-size:8.5pt; vertical-align:middle;">Hartmann's / Plasmalyte (balanced crystalloid). Reassess after each bolus. Adolescents ≥14yr: up to 500ml bolus (RCUK 2025). Trauma: limit crystalloid to 20ml/kg max — use blood products early.</td>
+                </tr>
+                <tr style="background:#fff8e1; border-top:1px solid #eee;">
+                    <td style="padding:8px 10px; font-size:18pt; font-weight:900; color:#f57f17; border-right:2px solid #ccc; text-align:center; vertical-align:middle;">L</td>
+                    <td style="padding:8px 10px; font-weight:800; vertical-align:middle;">Lorazepam<br><span style="font-size:8pt; font-weight:600; color:#666;">(seizure)</span></td>
+                    <td style="padding:8px 10px; font-family:monospace; font-weight:700; vertical-align:middle; font-size:9pt;">
+                        <span style="background:#fff8e1; border:1px solid #f57f17; color:#e65100; padding:2px 6px; border-radius:3px; font-size:10pt;">0.1 mg/kg</span><br>
+                        <span style="font-size:8.5pt;">Max single dose: <strong>4 mg</strong></span>
+                    </td>
+                    <td style="padding:8px 10px; font-size:8.5pt; vertical-align:middle;">IV or IO. Buccal midazolam 0.3mg/kg (max 10mg) if no IV access. If seizure continues after 2 doses → call anaesthetics, consider levetiracetam 20mg/kg IV or phenytoin 20mg/kg IV.</td>
+                </tr>
+                <tr style="background:#ffebee; border-top:1px solid #eee;">
+                    <td style="padding:8px 10px; font-size:18pt; font-weight:900; color:#b71c1c; border-right:2px solid #ccc; text-align:center; vertical-align:middle;">A</td>
+                    <td style="padding:8px 10px; font-weight:800; vertical-align:middle;">Adrenaline<br><span style="font-size:8pt; font-weight:600; color:#666;">(cardiac arrest)</span></td>
+                    <td style="padding:8px 10px; font-family:monospace; font-weight:700; vertical-align:middle; font-size:9pt;">
+                        <span style="background:#ffebee; border:1px solid #b71c1c; color:#b71c1c; padding:2px 6px; border-radius:3px; font-size:10pt;">0.1 ml/kg of 1:10,000</span><br>
+                        <span style="font-size:8.5pt;">= 10 mcg/kg. Repeat every 3–5 mins.</span>
+                    </td>
+                    <td style="padding:8px 10px; font-size:8.5pt; vertical-align:middle;">IV or IO. Give as early as possible in non-shockable arrest (PEA/asystole). In shockable arrest: give after 3rd shock, then every alternate cycle. Do NOT give via ETT.</td>
+                </tr>
+                <tr style="background:#e8f5e9; border-top:1px solid #eee;">
+                    <td style="padding:8px 10px; font-size:18pt; font-weight:900; color:#1b5e20; border-right:2px solid #ccc; text-align:center; vertical-align:middle;">G</td>
+                    <td style="padding:8px 10px; font-weight:800; vertical-align:middle;">Glucose<br><span style="font-size:8pt; font-weight:600; color:#666;">(hypoglycaemia)</span></td>
+                    <td style="padding:8px 10px; font-family:monospace; font-weight:700; vertical-align:middle; font-size:9pt;">
+                        <span style="background:#e8f5e9; border:1px solid #2e7d32; color:#1b5e20; padding:2px 6px; border-radius:3px; font-size:10pt;">2 ml/kg of 10% dextrose</span>
+                    </td>
+                    <td style="padding:8px 10px; font-size:8.5pt; vertical-align:middle;">IV or IO over 5 mins. Recheck BM after 15 mins. If no 10%: use 5ml/kg 5% dextrose. Never give 50% dextrose undiluted to children — causes vein damage.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Bottom quick reference boxes -->
+        <div style="display:flex; gap:4mm;">
+            <div style="flex:1; background:#ffebee; border:2px solid #b71c1c; border-radius:4px; padding:7px 10px; font-size:8.5pt;">
+                <div style="font-weight:900; color:#b71c1c; text-transform:uppercase; margin-bottom:4px; font-size:9pt;">Amiodarone (shockable arrest)</div>
+                <span style="font-family:monospace; font-weight:700; font-size:10pt; color:#b71c1c;">5 mg/kg</span> IV/IO after 3rd shock (max 300mg).<br>
+                Repeat after 5th shock. Do NOT delay defibrillation.
+            </div>
+            <div style="flex:1; background:#e8f5e9; border:2px solid #2e7d32; border-radius:4px; padding:7px 10px; font-size:8.5pt;">
+                <div style="font-weight:900; color:#2e7d32; text-transform:uppercase; margin-bottom:4px; font-size:9pt;">Atropine (bradycardia)</div>
+                <span style="font-family:monospace; font-weight:700; font-size:10pt; color:#2e7d32;">20 mcg/kg</span> IV/IO (min 100mcg, max 600mcg).<br>
+                Only for vagally-mediated or conduction disease bradycardia.
+            </div>
+            <div style="flex:1; background:#e3f2fd; border:2px solid #1565c0; border-radius:4px; padding:7px 10px; font-size:8.5pt;">
+                <div style="font-weight:900; color:#1565c0; text-transform:uppercase; margin-bottom:4px; font-size:9pt;">IO Access (if no IV in 5 mins)</div>
+                Proximal tibia 1–2cm below tibial tuberosity.<br>
+                Distal femur: 1–2cm above lateral condyle.<br>
+                Humeral head: arm on abdomen, shoulder internally rotated.
+            </div>
+        </div>
+
+        <div class="footer-spacer"></div>
+        <div class="footer-email">Feedback/Updates: jake.turner@uhb.nhs.uk</div>
+        <div class="ref-bar">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/paediatric-basic-life-support-guidelines" class="ref-qr" alt="QR Code">
+            Reference: Resuscitation Council UK PALS 2025 | APLS / EPALS | DFTB RCUK 2025 Summary
+            <a href="https://www.resus.org.uk/professional-library/2025-resuscitation-guidelines/paediatric-basic-life-support-guidelines" target="_blank" class="ref-link-text">RCUK PALS 2025 Guidelines</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE 31: HOT DEBRIEF ===== -->
 <div class="page debrief-page">
     <img src="images/wmebem_logo.png" class="tp-logo" alt="Logo" style="margin-bottom: 8mm; width: 90px;">
     <div class="debrief-card">
@@ -3017,7 +3149,7 @@
         </div>
     </div>
     <div style="margin-top: 8mm; font-size: 8pt; color: #888; text-align:center;">
-        WMEBEM Paediatric HALO QRH v1.0 (May 2026) | jake.turner@uhb.nhs.uk<br>
+        WMEBEM Paediatric HALO QRH v1.2 (May 2026) | jake.turner@uhb.nhs.uk<br>
         RCOG GTG-56 (Dec 2024) | RCUK 2025 | RCPCH | DAS 2025 | Resuscitation Council UK PALS 2025
     </div>
 </div>
