@@ -524,12 +524,18 @@
                 color-adjust: exact !important;
             }
         }
+        /* Screen only: on narrow screens the fixed-width A4 pages scroll sideways
+           inside this wrapper, so the whole browser page no longer scrolls sideways */
+        @media screen {
+            .pages-scroll { overflow-x: auto; }
+        }
     </style>
 </head>
 <body>
 
 <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
 
+<div class="pages-scroll">
 <!-- ===== PAGE 1: TITLE PAGE ===== -->
 <div class="page title-page">
     <img src="images/wmebem_logo.png" class="tp-logo" alt="WMEBEM Logo">
@@ -3290,6 +3296,8 @@
         RCOG GTG-56 (2019, reviewed Dec 2024) | RCUK PALS 2025 | DAS 2025 | Review due Sep 2027
     </div>
 </div>
+
+</div><!-- /.pages-scroll -->
 
 <script>
     document.querySelectorAll('.checklist-item').forEach(item => {
