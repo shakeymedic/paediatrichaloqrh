@@ -1,0 +1,27 @@
+{
+  "name": "paediatric-halo-qrh",
+  "version": "1.0.0",
+  "description": "Paediatric HALO Quick Reference Handbook: printable booklet, website and Android app",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "pdf": "node build/pdf.mjs",
+    "serve": "npx --yes serve@14 dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shakeymedic/paediatrichaloqrh.git"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/shakeymedic/paediatrichaloqrh/issues"
+  },
+  "homepage": "https://github.com/shakeymedic/paediatrichaloqrh#readme",
+  "devDependencies": {
+    "@fontsource/inter": "^5.3.0",
+    "linkedom": "^0.18.13",
+    "playwright": "1.56",
+    "sharp": "^0.34.5"
+  },
+  "private": true,
+  "type": "module"
+}
